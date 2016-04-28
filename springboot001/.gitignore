@@ -6,3 +6,6 @@ gradle-wrapper.jar
 gradle-wrapper.properties
 /bin
 /build
+
+/bower_components/
+/src/main/webapp/lib/
