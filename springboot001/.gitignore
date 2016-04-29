@@ -1,6 +1,7 @@
 *.classpath
 *.project
 *.settings
+*.properties
 .gradle
 gradle-wrapper.jar
 gradle-wrapper.properties

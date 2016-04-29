@@ -1,8 +1,6 @@
 buildscript {
 	ext {
 		springBootVersion = '1.2.8.RELEASE'
-		ormVersion = '5.1.0.Final'
-		mysqlConnVersion = '5.1.37'
 	}
 	repositories {
 		mavenCentral()
@@ -36,9 +34,9 @@ configurations {
 }
 
 dependencies {
-	compile('mysql:mysql-connector-java:${mysqlConnVersion}')
-	compile('org.hibernate:hibernate-entitymanager:${ormVersion}')
+	compile('org.hibernate:hibernate-entitymanager:5.1.0.Final')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	runtime('mysql:mysql-connector-java:5.1.37')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
 }

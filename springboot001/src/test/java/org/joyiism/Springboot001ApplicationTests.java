@@ -10,9 +10,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @SpringApplicationConfiguration(classes = Springboot001Application.class)
 @WebAppConfiguration
 public class Springboot001ApplicationTests {
-
+	
 	@Test
 	public void contextLoads() {
 	}
-
+	
 }
