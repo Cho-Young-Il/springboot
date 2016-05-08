@@ -9,4 +9,4 @@ gradle-wrapper.properties
 /build
 
 /bower_components/
-/src/main/webapp/lib/
+/src/main/resources/static/lib/

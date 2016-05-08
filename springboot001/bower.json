@@ -17,7 +17,7 @@
 		"jquery": "2.0.3"
 	},
 	"install": {
-		"path": "src/main/webapp/lib",
+		"path": "src/main/resources/static/lib",
 		"sources": {
 			"bootstrap": "bower_components/bootstrap/dist/**",
       		"jquery": "bower_components/jquery/**"
