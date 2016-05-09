@@ -21,6 +21,6 @@ public class FreemarkerTestController {
 	
 	@RequestMapping(value="/main", method=RequestMethod.GET)
 	public String viewMain() {
-		return "test/main";
+		return "main/main";
 	}
 }

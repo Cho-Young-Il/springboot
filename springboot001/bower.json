@@ -14,13 +14,15 @@
 	],
 	"dependencies": {
 		"bootstrap": "~3.3.4",
-		"jquery": "2.0.3"
+		"jquery": "2.0.3",
+		"font-awesome": "~4.3.0"
 	},
 	"install": {
 		"path": "src/main/resources/static/lib",
 		"sources": {
 			"bootstrap": "bower_components/bootstrap/dist/**",
-      		"jquery": "bower_components/jquery/**"
+      		"jquery": "bower_components/jquery/**",
+      		"font-awesome": "bower_components/font-awesome/**"
 		}
 	}
 }
