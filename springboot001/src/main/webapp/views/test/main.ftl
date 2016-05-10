@@ -4,194 +4,8 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
-<style type="text/css">
-body{
-	margin-top:200px;
-	background: url("/images/home/homebg.jpg")
-					no-repeat center fixed;
-	background-size: cover;
-	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/springboot001/images/home/homebg.jpg',sizingMethod='scale')";
-	text-align: center
-}
-
-.login-container {
-    position: relative;
-    margin: 0 auto;
-    max-width: 390px;
-}
-
-.login-container .loginbox {
-    position: relative;
-    width: 390px !important;
-    height: auto !important;
-    padding: 0 0 20px 0;
-    -webkit-box-shadow: 0 0 14px rgba(0,0,0,.1);
-    -moz-box-shadow: 0 0 14px rgba(0,0,0,.1);
-    box-shadow: 0 0 14px rgba(0,0,0,.1);
-}
-
-.bg-white {
-    background-color: rgba( 255, 255, 255, 0.9 ) !important;
-}
-
-.login-container .loginbox .loginbox-title {
-    position: relative;
-    text-align: center;
-    width: 100%;
-    height: 35px;
-    padding-top: 10px;
-    font-family: 'Lucida Sans','trebuchet MS',Arial,Helvetica;
-    font-size: 20px;
-    font-weight: normal;
-    color: #444;
-}
-
-.login-container .loginbox .loginbox-social {
-    padding: 0 10px 10px;
-    text-align: center;
-}
-
-.login-container .loginbox .loginbox-social .social-title {
-    font-size: 14px;
-    font-weight: 500;
-    color: #a9a9a9;
-    margin-top: 10px;
-}
-
-.login-container .loginbox .loginbox-social .social-buttons {
-    height: 80px;
-    width: 420px;
-    padding: 15px 80px;
-    text-align: center;
-}
-
-.login-container .loginbox .loginbox-social .social-buttons .button-facebook {
-    float: left;
-    border: 2px solid #3b5998;
-    color: #3b5998;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    margin-right: 30px;
-    background-color: #fff;
-}
-
-.login-container .loginbox .loginbox-social .social-buttons .button-twitter {
-    float: left;
-    border: 2px solid #29c1f6;
-    color: #29c1f6;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    margin-right: 30px;
-    background-color: #fff;
-}
-
-.login-container .loginbox .loginbox-social .social-buttons .button-google  {
-    float: left;
-    border: 2px solid #ef4f1d;
-    color: #ef4f1d;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    margin-right: 30px;
-    background-color: #fff;
-}
-
-.login-container .loginbox .loginbox-social .social-buttons .button-facebook i {
-    font-size: 26px;
-    line-height: 50px;
-}
-
-.login-container .loginbox .loginbox-social .social-buttons .button-twitter i {
-    font-size: 26px;
-    line-height: 50px;
-}
-
-.login-container .loginbox .loginbox-social .social-buttons .button-google i {
-    font-size: 26px;
-    line-height: 50px;
-}
-
-.login-container .loginbox .loginbox-or {
-    position: relative;
-    text-align: center;
-    height: 20px;
-}
-
-.login-container .loginbox .loginbox-or .or-line {
-    position: absolute;
-    height: 1px;
-    top: 10px;
-    left: 40px;
-    right: 40px;
-    background-color: #ccc;
-}
-
-.login-container .loginbox .loginbox-or .or {
-    position: absolute;
-    top: 0;
-    -lh-property: 0;
-    left: -webkit-calc(50% - 25px);
-    left: -moz-calc(50% - 25px);
-    left: calc(50% - 25px);
-    width: 50px;
-    height: 20px;
-    background-color: #fff;
-    color: #999;
-    margin: 0 auto;
-}
-
-.login-container .loginbox .loginbox-textbox {
-    padding: 10px 40px;
-}
-
-.login-container .loginbox .loginbox-textbox .form-control {
-    -webkit-border-radius: 3px !important;
-    -webkit-background-clip: padding-box !important;
-    -moz-border-radius: 3px !important;
-    -moz-background-clip: padding !important;
-    border-radius: 3px !important;
-    background-clip: padding-box !important;
-}
-
-.login-container .loginbox .loginbox-checkbox label {
-    font-size: 13px;
-    color: #666;
-}
-
-.login-container .loginbox .loginbox-submit {
-    padding: 10px 40px;   
-}
-
-.login-container .loginbox .loginbox-submit input {
-	width:80px;
-}
-
-.login-container .logobox {
-    width: 390px !important;
-    height: 50px !important;
-    padding: 5px;
-    margin-bottom: 15px;
-    -webkit-box-shadow: 0 0 14px rgba(0,0,0,.1);
-    -moz-box-shadow: 0 0 14px rgba(0,0,0,.1);
-    box-shadow: 0 0 14px rgba(0,0,0,.1);
-    background-color: rgba( 255, 255, 255, 0.9 );
-    text-align: left;
-}
-.logobox-title {
-	padding-top: 5px;
-	font-family: 'Lucida Sans','trebuchet MS',Arial,Helvetica;
-    font-size: 20px;
-    font-weight: bold;
-    color: black;
-    text-align: center;
-}
-.loginbox, .logobox {
-	border-radius: 2px;
-}
-</style>
-<title>Insert title here</title>
+<link rel="stylesheet" href="/css/main/main.css">
+<title>Springboot001</title>
 </head>
 <body>
 	<div class="login-container animated fadeInDown bootstrap snippets">
@@ -201,7 +15,7 @@ body{
 		<div class="loginbox bg-white">
 			<div class="loginbox-title">SIGN IN</div>
 			<div class="loginbox-social">
-				<div class="social-title ">Connect with Your Social Accounts</div>
+				<div class="social-title">Connect with Your Social Accounts</div>
 				<div class="social-buttons">
 					<a href="" class="button-facebook">
 						<i class="social-icon fa fa-facebook"></i>
@@ -230,10 +44,82 @@ body{
 				</label>
 			</div>
 			<div class="loginbox-submit">
-				<input type="button" class="btn btn-primary" value="Sign In">
-				<input type="button" class="btn btn-danger" value="Sign Up">
+				<input type="button" id="signInBtn" class="btn btn-primary" value="Sign In">
+				<input type="button" id="signUpBtn" class="btn btn-danger" value="Sign Up">
 			</div>
 		</div>
 	</div>
+	
+	<div class="section my-modal" id="myModal">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+					<form id="signup" role="form" class="text">
+						<div class="row myborder">
+						<span class="close">
+							<i class="fa fa-fw fa-close"></i>
+						</span>
+							<br/>
+							<h3 style="margin: initial; margin-bottom: 10px; font-weight: bold;">CREATE YOUR ACCOUNT</h3>
+							Fill in the form below to get instant access.
+							<hr>
+							<div class="input-group margin-bottom-20">
+								<span class="input-group-addon">
+									<i class="glyphicon glyphicon-ok mycolor"></i>
+								</span> 
+								<input size="60" maxlength="255" class="form-control"
+									required="required" placeholder="ID" name="mid"
+									id="mid" type="text">
+							</div>
+							<div class="input-group margin-bottom-20">
+								<span class="input-group-addon">
+									<i class="glyphicon glyphicon-user mycolor"></i>
+								</span> 
+								<input size="60" maxlength="255" class="form-control"
+									required="required" placeholder="Name" name="mname"
+									id="mname" type="text">
+							</div>
+							<div class="input-group margin-bottom-20">
+								<span class="input-group-addon">
+									<i class="glyphicon glyphicon-lock mycolor"></i>
+								</span> 
+								<input size="60" maxlength="255" class="form-control"
+									required="required" placeholder="Password" name="mpass"
+									id="mpass" type="password" pattern=".{8,}" 
+									title="At least 8 characters">
+							</div>
+							<div class="input-group margin-bottom-20">
+								<span class="input-group-addon">
+									<i class="glyphicon glyphicon-lock mycolor"></i>
+								</span> 
+									<input size="60" maxlength="255" class="form-control"
+									required="required" placeholder="Confirm Password"
+									name="mpassConfirm" id="mpassConfirm" type="password"
+									pattern=".{8,}" title="At least 8 characters">
+							</div>
+							<div class="input-group margin-bottom-20" id="emailDupCheck">
+								<span class="input-group-addon">
+									<i class="glyphicon glyphicon-envelope mycolor"></i>
+								</span> 
+								<input size="60" maxlength="255" class="form-control"
+									placeholder="Email" required="required"
+									name="memail" id="memail" type="email">
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-md-12">
+									<button type="submit" class="btn btn-success">
+                    					<i class="fa fa-fw fa-user-plus"></i>Sign Up</button>
+								</div>
+							</div>
+							<br/>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/lib/jquery/jquery.js"></script>
+	<script src="/js/main/main.js"></script>
 </body>
 </html>
