@@ -54,7 +54,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
-					<form id="signup" role="form" class="text">
+					<form id="signup" role="form" class="text" onsubmit="return memAdd();">
 						<div class="row myborder">
 						<span class="close">
 							<i class="fa fa-fw fa-close"></i>

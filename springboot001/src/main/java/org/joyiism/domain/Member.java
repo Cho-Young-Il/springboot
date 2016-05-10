@@ -115,4 +115,10 @@ public class Member {
 		this.comments = comments;
 		return this;
 	}
+	@Override
+	public String toString() {
+		return "Member [mno=" + mno + ", mid=" + mid + ", memail=" + memail + ", mpwd=" + mpwd + ", mname=" + mname
+				+ ", mregDate=" + mregDate + ", mmodDate=" + mmodDate + ", boards=" + boards + ", comments=" + comments
+				+ "]";
+	}
 }
