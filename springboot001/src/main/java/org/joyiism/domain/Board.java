@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "board")
 public class Board {
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "bno", nullable = false)
 	private int bno;
 	

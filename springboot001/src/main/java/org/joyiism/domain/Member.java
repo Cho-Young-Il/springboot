@@ -20,7 +20,7 @@ import javax.persistence.UniqueConstraint;
 		@UniqueConstraint(columnNames = {"mid"})
 })
 public class Member {
-	@Id @GeneratedValue(strategy = GenerationType.AUTO) 
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) 
 	@Column(name = "mno", nullable = false)
 	private int mno;
 	
@@ -49,7 +49,7 @@ public class Member {
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	private List<Board> boards;
 	
-	@OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	private List<Comment> comments;
 	
 	public int getMno() {

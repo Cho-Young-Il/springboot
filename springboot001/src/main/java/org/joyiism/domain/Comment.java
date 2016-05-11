@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "comment")
 public class Comment {
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cno;
 	
 	@Column(name = "ccontent", nullable = false, 

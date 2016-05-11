@@ -14,6 +14,7 @@ public class Initializer implements WebApplicationInitializer {
 		AnnotationConfigWebApplicationContext context = 
 				new AnnotationConfigWebApplicationContext();
 		context.register(AppConfiguration.class);
+		
 		context.setServletContext(servletContext);
 		Dynamic dynamic = servletContext.addServlet(
 				"dispatcher", new DispatcherServlet(context));

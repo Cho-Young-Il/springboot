@@ -34,12 +34,12 @@ public class AppConfiguration extends WebMvcConfigurerAdapter {
 	}
 	
 	@Bean
-    public ViewResolver getViewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/views/");
-        resolver.setSuffix(".ftl");
-        return resolver;
-    }
+	public ViewResolver getViewResolver() {
+	    InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+	    resolver.setPrefix("/views/");
+	    resolver.setSuffix(".ftl");
+	    return resolver;
+	}
 	
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {

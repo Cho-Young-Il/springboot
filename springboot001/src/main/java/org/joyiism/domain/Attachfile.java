@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "attachfile")
 public class Attachfile {
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "fno", nullable = false)
 	private int fno;
 	
