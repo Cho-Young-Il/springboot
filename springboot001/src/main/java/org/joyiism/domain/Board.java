@@ -47,60 +47,66 @@ public class Board {
 	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
 	private List<Attachfile> files;
 	
+	public Board() {}
+	public Board(int bno, String btitle, String bcontent, Date bregDate, Date bmodDate, Member member,
+			List<Comment> comments, List<Attachfile> files) {
+		super();
+		this.bno = bno;
+		this.btitle = btitle;
+		this.bcontent = bcontent;
+		this.bregDate = bregDate;
+		this.bmodDate = bmodDate;
+		this.member = member;
+		this.comments = comments;
+		this.files = files;
+	}
+	
 	public int getBno() {
 		return bno;
 	}
-	public Board setBno(int bno) {
+	public void setBno(int bno) {
 		this.bno = bno;
-		return this;
 	}
 	public String getBtitle() {
 		return btitle;
 	}
-	public Board setBtitle(String btitle) {
+	public void setBtitle(String btitle) {
 		this.btitle = btitle;
-		return this;
 	}
 	public String getBcontent() {
 		return bcontent;
 	}
-	public Board setBcontent(String bcontent) {
+	public void setBcontent(String bcontent) {
 		this.bcontent = bcontent;
-		return this;
 	}
 	public Date getBregDate() {
 		return bregDate;
 	}
-	public Board setBregDate(Date bregDate) {
+	public void setBregDate(Date bregDate) {
 		this.bregDate = bregDate;
-		return this;
 	}
 	public Date getBmodDate() {
 		return bmodDate;
 	}
-	public Board setBmodDate(Date bmodDate) {
+	public void setBmodDate(Date bmodDate) {
 		this.bmodDate = bmodDate;
-		return this;
 	}
 	public Member getMember() {
 		return member;
 	}
-	public Board setMember(Member member) {
+	public void setMember(Member member) {
 		this.member = member;
-		return this;
 	}
 	public List<Comment> getComments() {
 		return comments;
 	}
-	public Board setComments(List<Comment> comments) {
+	public void setComments(List<Comment> comments) {
 		this.comments = comments;
-		return this;
 	}
 	public List<Attachfile> getFiles() {
 		return files;
 	}
-	public Board setFiles(List<Attachfile> files) {
+	public void setFiles(List<Attachfile> files) {
 		this.files = files;
-		return this;
 	}
 }

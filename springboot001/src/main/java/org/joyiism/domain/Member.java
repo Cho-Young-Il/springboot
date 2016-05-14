@@ -52,69 +52,76 @@ public class Member {
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	private List<Comment> comments;
 	
+	public Member() {}
+	public Member(int mno, String mid, String memail, String mpwd, String mname, Date mregDate, Date mmodDate,
+			List<Board> boards, List<Comment> comments) {
+		super();
+		this.mno = mno;
+		this.mid = mid;
+		this.memail = memail;
+		this.mpwd = mpwd;
+		this.mname = mname;
+		this.mregDate = mregDate;
+		this.mmodDate = mmodDate;
+		this.boards = boards;
+		this.comments = comments;
+	}
+	
 	public int getMno() {
 		return mno;
 	}
-	public Member setMno(int mno) {
+	public void setMno(int mno) {
 		this.mno = mno;
-		return this;
 	}
 	public String getMid() {
 		return mid;
 	}
-	public Member setMid(String mid) {
+	public void setMid(String mid) {
 		this.mid = mid;
-		return this;
 	}
 	public String getMemail() {
 		return memail;
 	}
-	public Member setMemail(String memail) {
+	public void setMemail(String memail) {
 		this.memail = memail;
-		return this;
 	}
 	public String getMpwd() {
 		return mpwd;
 	}
-	public Member setMpwd(String mpwd) {
+	public void setMpwd(String mpwd) {
 		this.mpwd = mpwd;
-		return this;
 	}
 	public String getMname() {
 		return mname;
 	}
-	public Member setMname(String mname) {
+	public void setMname(String mname) {
 		this.mname = mname;
-		return this;
 	}
 	public Date getMregDate() {
 		return mregDate;
 	}
-	public Member setMregDate(Date mregDate) {
+	public void setMregDate(Date mregDate) {
 		this.mregDate = mregDate;
-		return this;
 	}
 	public Date getMmodDate() {
 		return mmodDate;
 	}
-	public Member setMmodDate(Date mmodDate) {
+	public void setMmodDate(Date mmodDate) {
 		this.mmodDate = mmodDate;
-		return this;
 	}
 	public List<Board> getBoards() {
 		return boards;
 	}
-	public Member setBoards(List<Board> boards) {
+	public void setBoards(List<Board> boards) {
 		this.boards = boards;
-		return this;
 	}
 	public List<Comment> getComments() {
 		return comments;
 	}
-	public Member setComments(List<Comment> comments) {
+	public void setComments(List<Comment> comments) {
 		this.comments = comments;
-		return this;
 	}
+	
 	@Override
 	public String toString() {
 		return "Member [mno=" + mno + ", mid=" + mid + ", memail=" + memail + ", mpwd=" + mpwd + ", mname=" + mname

@@ -39,46 +39,50 @@ public class Comment {
 	@JoinColumn(name = "mno")
 	private Member member;
 	
+	public Comment() {}
+	public Comment(int cno, String ccontent, Date cregDate, Date cmodDate, Board board, Member member) {
+		this.cno = cno;
+		this.ccontent = ccontent;
+		this.cregDate = cregDate;
+		this.cmodDate = cmodDate;
+		this.board = board;
+		this.member = member;
+	}
+	
 	public int getCno() {
 		return cno;
 	}
-	public Comment setCno(int cno) {
+	public void setCno(int cno) {
 		this.cno = cno;
-		return this;
 	}
 	public String getCcontent() {
 		return ccontent;
 	}
-	public Comment setCcontent(String ccontent) {
+	public void setCcontent(String ccontent) {
 		this.ccontent = ccontent;
-		return this;
 	}
 	public Date getCregDate() {
 		return cregDate;
 	}
-	public Comment setCregDate(Date cregDate) {
+	public void setCregDate(Date cregDate) {
 		this.cregDate = cregDate;
-		return this;
 	}
 	public Date getCmodDate() {
 		return cmodDate;
 	}
-	public Comment setCmodDate(Date cmodDate) {
+	public void setCmodDate(Date cmodDate) {
 		this.cmodDate = cmodDate;
-		return this;
 	}
 	public Board getBoard() {
 		return board;
 	}
-	public Comment setBoard(Board board) {
+	public void setBoard(Board board) {
 		this.board = board;
-		return this;
 	}
 	public Member getMember() {
 		return member;
 	}
-	public Comment setMember(Member member) {
+	public void setMember(Member member) {
 		this.member = member;
-		return this;
 	}
 }

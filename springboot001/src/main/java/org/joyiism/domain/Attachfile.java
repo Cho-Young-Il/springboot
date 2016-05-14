@@ -34,46 +34,50 @@ public class Attachfile {
 	@JoinColumn(name = "bno")
 	private Board board;
 	
+	public Attachfile() {}
+	public Attachfile(int fno, String foriName, String frealName, String fsavedDir, String fthumbDir, Board board) {
+		this.fno = fno;
+		this.foriName = foriName;
+		this.frealName = frealName;
+		this.fsavedDir = fsavedDir;
+		this.fthumbDir = fthumbDir;
+		this.board = board;
+	}
+	
 	public int getFno() {
 		return fno;
 	}
-	public Attachfile setFno(int fno) {
+	public void setFno(int fno) {
 		this.fno = fno;
-		return this;
 	}
 	public String getForiName() {
 		return foriName;
 	}
-	public Attachfile setForiName(String foriName) {
+	public void setForiName(String foriName) {
 		this.foriName = foriName;
-		return this;
 	}
 	public String getFrealName() {
 		return frealName;
 	}
-	public Attachfile setFrealName(String frealName) {
+	public void setFrealName(String frealName) {
 		this.frealName = frealName;
-		return this;
 	}
 	public String getFsavedDir() {
 		return fsavedDir;
 	}
-	public Attachfile setFsavedDir(String fsavedDir) {
+	public void setFsavedDir(String fsavedDir) {
 		this.fsavedDir = fsavedDir;
-		return this;
 	}
 	public String getFthumbDir() {
 		return fthumbDir;
 	}
-	public Attachfile setFthumbDir(String fthumbDir) {
+	public void setFthumbDir(String fthumbDir) {
 		this.fthumbDir = fthumbDir;
-		return this;
 	}
 	public Board getBoard() {
 		return board;
 	}
-	public Attachfile setBoard(Board board) {
+	public void setBoard(Board board) {
 		this.board = board;
-		return this;
 	}
 }

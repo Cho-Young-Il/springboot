@@ -54,9 +54,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
-					<form id="signup" role="form" class="text" onsubmit="return memAdd();">
+					<form id="signup" role="form" class="text">
 						<div class="row myborder">
-						<span class="close">
+						<span id="close" class="close">
 							<i class="fa fa-fw fa-close"></i>
 						</span>
 							<br/>
@@ -84,8 +84,8 @@
 									<i class="glyphicon glyphicon-lock mycolor"></i>
 								</span> 
 								<input size="60" maxlength="255" class="form-control"
-									required="required" placeholder="Password" name="mpass"
-									id="mpass" type="password" pattern=".{8,}" 
+									required="required" placeholder="Password" name="mpwd"
+									id="mpwd" type="password" pattern=".{8,}" 
 									title="At least 8 characters">
 							</div>
 							<div class="input-group margin-bottom-20">
@@ -94,7 +94,7 @@
 								</span> 
 									<input size="60" maxlength="255" class="form-control"
 									required="required" placeholder="Confirm Password"
-									name="mpassConfirm" id="mpassConfirm" type="password"
+									name="mpwdConfirm" id="mpwdConfirm" type="password"
 									pattern=".{8,}" title="At least 8 characters">
 							</div>
 							<div class="input-group margin-bottom-20" id="emailDupCheck">
@@ -108,7 +108,7 @@
 							<br/>
 							<div class="row">
 								<div class="col-md-12">
-									<button type="submit" class="btn btn-success">
+									<button id="memAddBtn" type="button" class="btn btn-success">
                     					<i class="fa fa-fw fa-user-plus"></i>Sign Up</button>
 								</div>
 							</div>
@@ -119,7 +119,8 @@
 			</div>
 		</div>
 	</div>
-	<script src="/lib/jquery/jquery.js"></script>
+	<script src="/js/main/global.js"></script>
 	<script src="/js/main/main.js"></script>
+	<script src="/lib/jquery/jquery.js"></script>
 </body>
 </html>

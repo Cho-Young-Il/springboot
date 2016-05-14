@@ -1,34 +1,28 @@
-/* regist modal */
-var modal = $("#myModal");
-var signUpBtn = $("#signUpBtn");
-var closeBtn = $("span.close");
-
-signUpBtn.click(function() {
+/* 
+ * modal -> global val
+ * regist modal
+ */
+$("#signUpBtn").click(function() {
 	modal.fadeIn("slow");
 });
 
-closeBtn.click(function() {
+$("#close").click(function() {
 	modal.fadeOut("slow");
 });
 
-window.onclick = function(event) {
-	if(event.target == modal) {
-		modal.fadeOut("slow");
-	}
-};
 
 /* member regist ajax */
-var memAdd = function() {
-	var $mpass = $("#mpass");
-	var $mpassConfirm = $("#mpassConfirm");
+$("#memAddBtn").click(function() {
+	var $mpwd = $("#mpwd");
+	var $mpwdConfirm = $("#mpwdConfirm");
 	var $mname = $("#mname");
 	var $memail = $("#memail");
 	var $mid = $("#mid");
 	
-	if($mpass.val() != $mpassConfirm.val()) {
+	if($mpwd.val() != $mpwdConfirm.val()) {
 		alert("Passwords are not same");
-		$mpass.val("").focus();
-		$mpassConfirm.val("");
+		$mpwd.val("").focus();
+		$mpwdConfirm.val("");
 		return false;
 	}
 	
@@ -54,23 +48,21 @@ var memAdd = function() {
 		return false;
 	}
 	
-	$.post("/member/add.json", {
-		mid		: $mid.val(),
-		mname	: $mname.val(),
-		mpwd	: $mpass.val(),
-		memail	: $memail.val()
-	}, function(resultObj) {
-		if(resultObj.status == "success") {
-			alert("Complete registration");
-			location.href = "/";
-		} else {
-			alert("Fail registration");
-			$mid.val("").focus();
-			$mname.val("");
-			$mpass.val("");
-			$mpassConfirm.val("");
-			$memail.val("");
-		}
-	}, "json");
+	console.log($("#signup").serialize());
+	console.log($memail.val());
+	
+	$.post("/member/add",
+		$("#signup").serialize()
+	, function(data) {
+		alert("Complete registration");
+		location.href = "/";
+	}).fail(function(e) {
+		alert("Fail registration");
+		$mid.val("").focus();
+		$mname.val("");
+		$mpwd.val("");
+		$mpwdConfirm.val("");
+		$memail.val("");
+	});
 	return false;
-};
+});

@@ -7,24 +7,24 @@ import javax.servlet.http.HttpServletRequestWrapper;
 
 public class XSSRequestWrapper extends HttpServletRequestWrapper {
 	private static Pattern[] patterns = new Pattern[] {
-			Pattern.compile("<script>(.*?)</script>", Pattern.CASE_INSENSITIVE),
-			Pattern.compile("src[\r\n]*=[\r\n]*\\\'(.*?)\\\'",
-					Pattern.CASE_INSENSITIVE | Pattern.MULTILINE
-							| Pattern.DOTALL),
-			Pattern.compile("src[\r\n]*=[\r\n]*\\\"(.*?)\\\"",
-					Pattern.CASE_INSENSITIVE | Pattern.MULTILINE
-							| Pattern.DOTALL),
-			Pattern.compile("</script>", Pattern.CASE_INSENSITIVE),
-			Pattern.compile("<script(.*?)>", Pattern.CASE_INSENSITIVE
-					| Pattern.MULTILINE | Pattern.DOTALL),
-			Pattern.compile("eval\\((.*?)\\)", Pattern.CASE_INSENSITIVE
-					| Pattern.MULTILINE | Pattern.DOTALL),
-			Pattern.compile("expression\\((.*?)\\)", Pattern.CASE_INSENSITIVE
-					| Pattern.MULTILINE | Pattern.DOTALL),
-			Pattern.compile("javascript:", Pattern.CASE_INSENSITIVE),
-			Pattern.compile("vbscript:", Pattern.CASE_INSENSITIVE),
-			Pattern.compile("onload(.*?)=", Pattern.CASE_INSENSITIVE
-					| Pattern.MULTILINE | Pattern.DOTALL)
+		Pattern.compile("<script>(.*?)</script>", Pattern.CASE_INSENSITIVE),
+		Pattern.compile("src[\r\n]*=[\r\n]*\\\'(.*?)\\\'",
+				Pattern.CASE_INSENSITIVE | Pattern.MULTILINE
+						| Pattern.DOTALL),
+		Pattern.compile("src[\r\n]*=[\r\n]*\\\"(.*?)\\\"",
+				Pattern.CASE_INSENSITIVE | Pattern.MULTILINE
+						| Pattern.DOTALL),
+		Pattern.compile("</script>", Pattern.CASE_INSENSITIVE),
+		Pattern.compile("<script(.*?)>", Pattern.CASE_INSENSITIVE
+				| Pattern.MULTILINE | Pattern.DOTALL),
+		Pattern.compile("eval\\((.*?)\\)", Pattern.CASE_INSENSITIVE
+				| Pattern.MULTILINE | Pattern.DOTALL),
+		Pattern.compile("expression\\((.*?)\\)", Pattern.CASE_INSENSITIVE
+				| Pattern.MULTILINE | Pattern.DOTALL),
+		Pattern.compile("javascript:", Pattern.CASE_INSENSITIVE),
+		Pattern.compile("vbscript:", Pattern.CASE_INSENSITIVE),
+		Pattern.compile("onload(.*?)=", Pattern.CASE_INSENSITIVE
+				| Pattern.MULTILINE | Pattern.DOTALL)
 	};
 
 	public XSSRequestWrapper(HttpServletRequest servletRequest) {
