@@ -8,5 +8,6 @@ gradle-wrapper.properties
 /build
 
 /node_modules/
+/node_server/pool.js
 /bower_components/
 /src/main/resources/static/lib/

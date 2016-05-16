@@ -43,7 +43,7 @@ $("#memAddBtn").click(function() {
 	}
 	
 	var regex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-	if(regex.test($memail.val()) === false) {
+	if(!regex.test($memail.val())) {
 		alert("Check email address");
 		return false;
 	}
@@ -65,4 +65,17 @@ $("#memAddBtn").click(function() {
 		$memail.val("");
 	});
 	return false;
+});
+
+
+/* node id duplication check */
+$("#mid").keyup(function() {
+	$.getJSON(nodeRoot + "/idCheck?callback=?&mid=" + $("#mid").val(), function(data) {
+		var status = data.status;
+		if(status == "ok") {
+			$("#midDiv > *").css("color", "blue");
+		} else {
+			$("#midDiv > *").css("color", "red");
+		}
+	});
 });

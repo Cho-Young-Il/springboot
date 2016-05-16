@@ -63,7 +63,7 @@
 							<h3 style="margin: initial; margin-bottom: 10px; font-weight: bold;">CREATE YOUR ACCOUNT</h3>
 							Fill in the form below to get instant access.
 							<hr>
-							<div class="input-group margin-bottom-20">
+							<div class="input-group margin-bottom-20" id="midDiv">
 								<span class="input-group-addon">
 									<i class="glyphicon glyphicon-ok mycolor"></i>
 								</span> 
@@ -120,6 +120,7 @@
 		</div>
 	</div>
 	<script src="/lib/jquery/jquery.js"></script>
+	<script src="/js/node-root.js"></script>
 	<script src="/js/main/global.js"></script>
 	<script src="/js/main/main.js"></script>
 </body>
