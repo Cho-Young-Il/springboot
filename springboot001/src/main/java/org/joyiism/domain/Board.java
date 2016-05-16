@@ -19,21 +19,20 @@ import javax.persistence.Table;
 @Table(name = "board")
 public class Board {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "bno", nullable = false)
+	@Column(name = "bno")
 	private int bno;
 	
-	@Column(name = "btitle", nullable = false, length = 255)
+	@Column(name = "btitle", length = 255)
 	private String btitle;
 	
-	@Column(name = "bcontent", nullable = false, 
-		columnDefinition = "text")
+	@Column(name = "bcontent", columnDefinition = "text")
 	private String bcontent;
 	
-	@Column(name = "breg_date", nullable = false, 
+	@Column(name = "breg_date",
 		columnDefinition = "timestamp default current_timestamp")
 	private Date bregDate;
 	
-	@Column(name = "bmod_date", nullable = false, 
+	@Column(name = "bmod_date", 
 		columnDefinition = "timestamp default current_timestamp")
 	private Date bmodDate;
 	

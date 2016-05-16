@@ -119,8 +119,8 @@
 			</div>
 		</div>
 	</div>
+	<script src="/lib/jquery/jquery.js"></script>
 	<script src="/js/main/global.js"></script>
 	<script src="/js/main/main.js"></script>
-	<script src="/lib/jquery/jquery.js"></script>
 </body>
 </html>

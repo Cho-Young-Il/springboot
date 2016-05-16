@@ -15,19 +15,19 @@ import javax.persistence.Table;
 @Table(name = "attachfile")
 public class Attachfile {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "fno", nullable = false)
+	@Column(name = "fno")
 	private int fno;
 	
-	@Column(name = "fori_name", nullable = false, length = 255)
+	@Column(name = "fori_name", length = 255)
 	private String foriName;
 	
-	@Column(name = "freal_name", nullable = false, length = 255)
+	@Column(name = "freal_name", length = 255)
 	private String frealName;
 	
-	@Column(name = "fsaved_dir", nullable = false, length = 255)
+	@Column(name = "fsaved_dir", length = 255)
 	private String fsavedDir;
 	
-	@Column(name = "fthumb_dir", nullable = false, length = 255)
+	@Column(name = "fthumb_dir", length = 255)
 	private String fthumbDir;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

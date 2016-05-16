@@ -15,33 +15,35 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
+import org.joyiism.util.BCryptEncoder;
+
 @Entity
 @Table(name = "member", uniqueConstraints = {
 		@UniqueConstraint(columnNames = {"mid"})
 })
 public class Member {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) 
-	@Column(name = "mno", nullable = false)
+	@Column(name = "mno")
 	private int mno;
 	
-	@Column(name = "mid", nullable = false, length = 100, unique = true)
+	@Column(name = "mid", length = 100, unique = true)
 	private String mid;
 	
-	@Column(name = "memail", nullable = false, length = 40)
+	@Column(name = "memail", length = 100)
 	private String memail;
 	
-	@Column(name = "mpwd", nullable = false, length = 20)
+	@Column(name = "mpwd", length = 100)
 	private String mpwd;
 	
-	@Column(name = "mname", nullable = false, length = 50)
+	@Column(name = "mname", length = 50)
 	private String mname;
 	
-	@Column(name = "mreg_date", nullable = false, 
+	@Column(name = "mreg_date", 
 		columnDefinition = "timestamp default current_timestamp")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date mregDate;
 	
-	@Column(name = "mmod_date", nullable = false, 
+	@Column(name = "mmod_date", 
 		columnDefinition="timestamp default current_timestamp")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date mmodDate;
@@ -59,7 +61,7 @@ public class Member {
 		this.mno = mno;
 		this.mid = mid;
 		this.memail = memail;
-		this.mpwd = mpwd;
+		this.mpwd = BCryptEncoder.encode(mpwd);
 		this.mname = mname;
 		this.mregDate = mregDate;
 		this.mmodDate = mmodDate;
@@ -89,7 +91,7 @@ public class Member {
 		return mpwd;
 	}
 	public void setMpwd(String mpwd) {
-		this.mpwd = mpwd;
+		this.mpwd = BCryptEncoder.encode(mpwd);
 	}
 	public String getMname() {
 		return mname;

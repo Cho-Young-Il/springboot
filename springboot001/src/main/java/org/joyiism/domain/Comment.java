@@ -19,15 +19,14 @@ public class Comment {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cno;
 	
-	@Column(name = "ccontent", nullable = false, 
-		columnDefinition = "text")
+	@Column(name = "ccontent", columnDefinition = "text")
 	private String ccontent;
 	
-	@Column(name = "creg_date", nullable = false, 
+	@Column(name = "creg_date", 
 		columnDefinition = "timestamp default current_timestamp")
 	private Date cregDate;
 	
-	@Column(name = "cmod_date", nullable = false, 
+	@Column(name = "cmod_date", 
 			columnDefinition = "timestamp default current_timestamp")
 	private Date cmodDate;
 	
