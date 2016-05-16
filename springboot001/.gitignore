@@ -7,5 +7,6 @@ gradle-wrapper.properties
 /bin
 /build
 
+/node_modules/
 /bower_components/
 /src/main/resources/static/lib/

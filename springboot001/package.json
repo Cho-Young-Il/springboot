@@ -1,0 +1,12 @@
+{
+    "name": "springboot001",
+    "homepage": "https://github.com/Cho-Young-Il/springboot/tree/master/springboot001",
+    "description": "",
+    "version": "v4.3.0",
+    "private": true,
+    "dependencies": {
+        "express": "4.13.4",
+        "socket.io": "1.4.5",
+        "mysql": "2.10.2"
+  }
+}
