@@ -15,8 +15,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
-import org.joyiism.util.BCryptEncoder;
-
 @Entity
 @Table(name = "member", uniqueConstraints = {
 		@UniqueConstraint(columnNames = {"mid"})
@@ -38,6 +36,14 @@ public class Member {
 	@Column(name = "mname", length = 50)
 	private String mname;
 	
+	@Column(name = "mphoto", length = 255,
+		columnDefinition = "varchar(255) default 'NONE'")
+	private String mphoto;
+
+	@Column(name = "msession_key", length = 50,
+		columnDefinition = "varchar(50) default 'NONE'")
+	private String msessionKey;
+	
 	@Column(name = "mreg_date", 
 		columnDefinition = "timestamp default current_timestamp")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -48,6 +54,11 @@ public class Member {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date mmodDate;
 	
+	@Column(name = "msession_limit", 
+			columnDefinition="timestamp default current_timestamp")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date msessionLimit;
+	
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	private List<Board> boards;
 	
@@ -57,18 +68,17 @@ public class Member {
 	public Member() {}
 	public Member(int mno, String mid, String memail, String mpwd, String mname, Date mregDate, Date mmodDate,
 			List<Board> boards, List<Comment> comments) {
-		super();
 		this.mno = mno;
 		this.mid = mid;
 		this.memail = memail;
-		this.mpwd = BCryptEncoder.encode(mpwd);
+		this.mpwd = mpwd;
 		this.mname = mname;
 		this.mregDate = mregDate;
 		this.mmodDate = mmodDate;
 		this.boards = boards;
 		this.comments = comments;
 	}
-	
+
 	public int getMno() {
 		return mno;
 	}
@@ -91,13 +101,25 @@ public class Member {
 		return mpwd;
 	}
 	public void setMpwd(String mpwd) {
-		this.mpwd = BCryptEncoder.encode(mpwd);
+		this.mpwd = mpwd;
 	}
 	public String getMname() {
 		return mname;
 	}
 	public void setMname(String mname) {
 		this.mname = mname;
+	}
+	public String getMphoto() {
+		return mphoto;
+	}
+	public void setMphoto(String mphoto) {
+		this.mphoto = mphoto;
+	}
+	public String getMsessionKey() {
+		return msessionKey;
+	}
+	public void setMsessionKey(String msessionKey) {
+		this.msessionKey = msessionKey;
 	}
 	public Date getMregDate() {
 		return mregDate;
@@ -110,6 +132,12 @@ public class Member {
 	}
 	public void setMmodDate(Date mmodDate) {
 		this.mmodDate = mmodDate;
+	}
+	public Date getMsessionLimit() {
+		return msessionLimit;
+	}
+	public void setMsessionLimit(Date msessionLimit) {
+		this.msessionLimit = msessionLimit;
 	}
 	public List<Board> getBoards() {
 		return boards;
@@ -127,7 +155,7 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [mno=" + mno + ", mid=" + mid + ", memail=" + memail + ", mpwd=" + mpwd + ", mname=" + mname
-				+ ", mregDate=" + mregDate + ", mmodDate=" + mmodDate + ", boards=" + boards + ", comments=" + comments
-				+ "]";
+				+ ", mphoto=" + mphoto + ", msessionKey=" + msessionKey + ", mregDate=" + mregDate + ", mmodDate="
+				+ mmodDate + ", msessionLimit=" + msessionLimit + ", boards=" + boards + ", comments=" + comments + "]";
 	}
 }

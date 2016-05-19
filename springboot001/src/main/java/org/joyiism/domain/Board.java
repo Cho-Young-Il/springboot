@@ -49,7 +49,6 @@ public class Board {
 	public Board() {}
 	public Board(int bno, String btitle, String bcontent, Date bregDate, Date bmodDate, Member member,
 			List<Comment> comments, List<Attachfile> files) {
-		super();
 		this.bno = bno;
 		this.btitle = btitle;
 		this.bcontent = bcontent;
