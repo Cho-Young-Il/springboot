@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/main/main.css">
 <title>Springboot001</title>
@@ -32,21 +32,23 @@
 				<div class="or-line"></div>
 				<div class="or">OR</div>
 			</div>
-			<div class="loginbox-textbox">
-				<input type="text" class="form-control" placeholder="ID">
-			</div>
-			<div class="loginbox-textbox">
-				<input type="text" class="form-control" placeholder="Password">
-			</div>
-			<div class="loginbox-checkbox">
-				<label class="checkbox">
-					<input type="checkbox" value="remember-me">Remember Me
-				</label>
-			</div>
-			<div class="loginbox-submit">
-				<input type="button" id="signInBtn" class="btn btn-primary" value="Sign In">
-				<input type="button" id="signUpBtn" class="btn btn-danger" value="Sign Up">
-			</div>
+			<form id="signin" role="form" class="text">
+				<div class="loginbox-textbox">
+					<input type="text" name="mid" class="form-control" placeholder="ID">
+				</div>
+				<div class="loginbox-textbox">
+					<input type="password" name="mpwd" class="form-control" placeholder="Password">
+				</div>
+				<div class="loginbox-checkbox">
+					<label class="checkbox">
+						<input type="checkbox" name="useCookie">Remember Me
+					</label>
+				</div>
+				<div class="loginbox-submit">
+					<input type="submit" id="signInBtn" class="btn btn-primary" value="Sign In">
+					<input type="button" id="signUpBtn" class="btn btn-danger" value="Sign Up">
+				</div>
+			</form>
 		</div>
 	</div>
 	

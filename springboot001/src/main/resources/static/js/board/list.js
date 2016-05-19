@@ -1,0 +1,1 @@
+$("#typo").typoShadow();

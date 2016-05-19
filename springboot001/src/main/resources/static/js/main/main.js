@@ -13,11 +13,11 @@ $("#close").click(function() {
 
 /* member regist ajax */
 $("#memAddBtn").click(function() {
-	var $mpwd = $("#mpwd");
-	var $mpwdConfirm = $("#mpwdConfirm");
-	var $mname = $("#mname");
-	var $memail = $("#memail");
-	var $mid = $("#mid");
+	var $mpwd = $("#signup #mpwd");
+	var $mpwdConfirm = $("#signup #mpwdConfirm");
+	var $mname = $("#signup #mname");
+	var $memail = $("#signup #memail");
+	var $mid = $("#signup #mid");
 	
 	if($mpwd.val() != $mpwdConfirm.val()) {
 		alert("Passwords are not same");
@@ -29,6 +29,12 @@ $("#memAddBtn").click(function() {
 	if($mname.val().indexOf(" ") >= 0) {
 		alert("Cannot include null with namespace");
 		$mname.focus().select();
+		return false;
+	}
+	
+	if(idCheckStatus != "ok") {
+		alert("Please do id check\nOR ID Duplicated");
+		$mid.focus().select();
 		return false;
 	}
 	
@@ -48,9 +54,6 @@ $("#memAddBtn").click(function() {
 		return false;
 	}
 	
-	console.log($("#signup").serialize());
-	console.log($memail.val());
-	
 	$.post("/member/add",
 		$("#signup").serialize()
 	, function(data) {
@@ -68,11 +71,30 @@ $("#memAddBtn").click(function() {
 });
 
 
+/* login ajax */
+$("#signin").submit(function() {
+	$.post("/member/login",
+		$("#signin").serialize()
+	, function(data) {
+		var url = data.url;
+		if(url) {
+			location.href = url;
+		} else {
+			alert("Login Fail.\nCheck ID or Password");
+		}
+	}, "json").fail(function(e) {
+		console.log(e);
+	});
+	return false;
+});
+
+
 /* node id duplication check */
 $("#mid").keyup(function() {
 	$.getJSON(nodeRoot + "/idCheck?callback=?&mid=" + $("#mid").val(), function(data) {
-		var status = data.status;
-		if(status == "ok") {
+		/* idCheckstatus -> global val */
+		idCheckStatus = data.status;
+		if(idCheckStatus == "ok") {
 			$("#midDiv > *").css("color", "blue");
 		} else {
 			$("#midDiv > *").css("color", "red");
