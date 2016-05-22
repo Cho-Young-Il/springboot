@@ -20,5 +20,5 @@ public class Initializer implements WebApplicationInitializer {
 				"dispatcher", new DispatcherServlet(context));
 		dynamic.addMapping("/");
 		dynamic.setLoadOnStartup(1);
-	}
+    }
 }

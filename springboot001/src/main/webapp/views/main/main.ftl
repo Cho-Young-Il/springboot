@@ -123,7 +123,7 @@
 	</div>
 	<script src="/lib/jquery/jquery.js"></script>
 	<script src="/js/node-root.js"></script>
-	<script src="/js/main/global.js"></script>
+	<script src="/js/common/global.js"></script>
 	<script src="/js/main/main.js"></script>
 </body>
 </html>

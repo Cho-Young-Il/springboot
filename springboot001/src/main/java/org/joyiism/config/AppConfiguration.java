@@ -53,7 +53,7 @@ public class AppConfiguration extends WebMvcConfigurerAdapter {
 	public AuthInterceptor authInterceptor() {
 		return new AuthInterceptor();
 	}
-
+	
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 		configurer.ignoreUnknownPathExtensions(false)

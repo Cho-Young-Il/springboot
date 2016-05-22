@@ -3,11 +3,11 @@
  * regist modal
  */
 $("#signUpBtn").click(function() {
-	modal.fadeIn("slow");
+	main.modal.fadeIn("slow");
 });
 
 $("#close").click(function() {
-	modal.fadeOut("slow");
+	main.modal.fadeOut("slow");
 });
 
 
@@ -32,7 +32,7 @@ $("#memAddBtn").click(function() {
 		return false;
 	}
 	
-	if(idCheckStatus != "ok") {
+	if(main.idCheckStatus != "ok") {
 		alert("Please do id check\nOR ID Duplicated");
 		$mid.focus().select();
 		return false;
@@ -93,8 +93,8 @@ $("#signin").submit(function() {
 $("#mid").keyup(function() {
 	$.getJSON(nodeRoot + "/idCheck?callback=?&mid=" + $("#mid").val(), function(data) {
 		/* idCheckstatus -> global val */
-		idCheckStatus = data.status;
-		if(idCheckStatus == "ok") {
+		main.idCheckStatus = data.status;
+		if(main.idCheckStatus == "ok") {
 			$("#midDiv > *").css("color", "blue");
 		} else {
 			$("#midDiv > *").css("color", "red");

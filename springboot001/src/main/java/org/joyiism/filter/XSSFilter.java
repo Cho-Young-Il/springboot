@@ -11,8 +11,15 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-@WebFilter(urlPatterns="/*")
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+@Component
+@WebFilter("/*")
 public class XSSFilter implements Filter {
+	private static final Logger logger = 
+			LoggerFactory.getLogger(XSSFilter.class);
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {}
 
@@ -20,6 +27,7 @@ public class XSSFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		chain.doFilter(new XSSRequestWrapper((HttpServletRequest) request), response);
+		logger.info("xss do filter");
 	}
 
 	@Override
