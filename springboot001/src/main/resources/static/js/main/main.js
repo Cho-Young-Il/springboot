@@ -72,7 +72,7 @@ $("#memAddBtn").click(function() {
 
 
 /* login ajax */
-$("#signin").submit(function() {
+$("#signInBtn").click(function() {
 	$.post("/member/login",
 		$("#signin").serialize()
 	, function(data) {

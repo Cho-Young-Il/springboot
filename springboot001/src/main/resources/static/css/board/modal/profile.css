@@ -1,0 +1,127 @@
+body {
+	font-family: 'Open Sans', 'Helvetica Neue',
+				 Helvetica, Arial, sans-serif;
+}
+
+.widget .panel, .widget.panel {
+    border-bottom-width: 1px;
+    border-bottom-color: #cfd9db;
+    overflow: hidden;
+}
+
+.widget {
+    margin-bottom: 20px;
+}
+
+.panel {
+    position: relative;
+    border-width: 1px;
+    border-color: #cfd9db;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 .0625rem .0625rem rgba(0,0,0,.05);
+    box-shadow: 0 .0625rem .0625rem rgba(0,0,0,.05);
+}
+
+.panel-body {
+    position: relative;
+}
+
+.mb0 {
+    margin-bottom: 0!important;
+}
+
+.text-info {
+    color: #22A7F0!important;
+}
+
+.list-table {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.list-table>li:first-child {
+    padding-left: 0;
+}
+
+.list-table>li {
+    display: table-cell;
+    table-layout: fixed;
+    vertical-align: middle;
+    width: auto;
+    padding: 0 5px;
+}
+
+.img-bordered-primary {
+    -webkit-box-shadow: 0 0 0 2px #fff,0 0 0 4px #446CB3;
+    box-shadow: 0 0 0 2px #fff,0 0 0 4px #446CB3;
+}
+
+.img-circle {
+    border-radius: 50%!important;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.semibold {
+    font-weight: 600;
+}
+
+.nm {
+    margin: 0!important;
+}
+
+.input-group {
+	margin: 20px;
+}
+
+.modify-modal-btn {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.btn {
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 1px;
+	border-radius: 0;
+	padding: 10px 10px;
+}
+
+.profile-modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0%;
+	top: 100px;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+.mod-pass-div {
+	display: none;
+}
+
+.shadow {
+	-webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+	border: 2px solid #003399;
+}
+
+#deleteConfirm {
+	top:10%;
+	outline: none;
+}
+
+.panel-body a {
+	cursor: pointer;
+}

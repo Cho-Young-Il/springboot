@@ -21,7 +21,7 @@
                     <a href="https://github.com/Cho-Young-Il/springboot/tree/master/springboot001" target="_blank">GITHUB</a>
                 </li>
                 <li>
-                    <a href="#">MY-PROFILE</a>
+                    <a href="#" id="myProfile">MY-PROFILE</a>
                 </li>
                 <li>
                     <a href="/member/logout">LOGOUT</a>

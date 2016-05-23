@@ -45,7 +45,7 @@
 					</label>
 				</div>
 				<div class="loginbox-submit">
-					<input type="submit" id="signInBtn" class="btn btn-primary" value="Sign In">
+					<input type="button" id="signInBtn" class="btn btn-primary" value="Sign In">
 					<input type="button" id="signUpBtn" class="btn btn-danger" value="Sign Up">
 				</div>
 			</form>
