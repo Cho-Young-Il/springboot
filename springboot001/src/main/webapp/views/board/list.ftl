@@ -30,6 +30,7 @@
 	<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/lib/clean-blog/clean-blog.min.js"></script>
 	<script src="/js/common/jquery.typoshadow.js"></script>
+	<script src="/js/common/global.js"></script>
 	<script src="/js/board/list.js"></script>
 	<script src="/js/board/modal/profile.js"></script>
 </body>

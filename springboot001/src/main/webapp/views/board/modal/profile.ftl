@@ -4,6 +4,7 @@
 			<div class="widget panel shadow" style="border: 2px solid #003399;">
 				<div class="panel-body">
 					<hr style="margin-top: 0px;">
+					<input type="file" id="profileImageFile" class="profile-image-file">
 					<h4 class="mb0">
 						PROFILE 
 						<a id="modifyModalCloseBtn">
@@ -17,20 +18,21 @@
 					</h4>
 					<hr>
 					<ul class="list-table">
-						<li style="width: 70px; padding-left: 10px;"><img
-							class="img-circle img-bordered-primary"
-							src="/images/base-user.png" alt=""
-							width="70px" height="70px"></li>
+						<li style="width: 70px; padding-left: 10px;">
+						<img class="img-circle img-bordered-primary"
+							id="profileImage" src="/images/base-user.png" 
+							alt="" width="70px" height="70px">
+						</li>
 						<li class="text-left" style="padding-left: 30px;">
 							<h4 class="semibold ellipsis nm">조영일</h4>
 							<p class="text-muted nm">joyikr</p>
 						</li>
 						<li class="text-right">
-							<a class="btn btn-primary">Edit</a>
+							<a class="btn btn-primary" id="profileImageEdit">Edit</a>
 							
 						</li>
 						<li class="text-left">
-							<a class="btn btn-danger">Delete</a>
+							<a class="btn btn-danger" id="profileImageDelete">Delete</a>
 							
 						</li>
 					</ul>

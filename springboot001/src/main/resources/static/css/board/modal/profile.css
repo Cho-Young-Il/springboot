@@ -125,3 +125,7 @@ body {
 .panel-body a {
 	cursor: pointer;
 }
+
+input.profile-image-file {
+	display: none;
+}
