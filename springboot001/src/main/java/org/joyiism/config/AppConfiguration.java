@@ -3,8 +3,11 @@ package org.joyiism.config;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.MultipartConfigElement;
+
 import org.joyiism.interceptor.AuthInterceptor;
 import org.joyiism.interceptor.LoginInterceptor;
+import org.springframework.boot.context.embedded.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -35,7 +38,6 @@ public class AppConfiguration extends WebMvcConfigurerAdapter {
 		configurer.setFreemarkerVariables(map);
 		return configurer;
 	}
-	
 	@Bean
 	public ViewResolver getViewResolver() {
 	    InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -43,40 +45,41 @@ public class AppConfiguration extends WebMvcConfigurerAdapter {
 	    resolver.setSuffix(".ftl");
 	    return resolver;
 	}
-	
 	@Bean
 	public LoginInterceptor loginInterceptor() {
 		return new LoginInterceptor();
 	}
-	
 	@Bean
 	public AuthInterceptor authInterceptor() {
 		return new AuthInterceptor();
 	}
+	@Bean
+    public MultipartConfigElement multipartConfigElement() {
+        MultipartConfigFactory factory = new MultipartConfigFactory();
+        factory.setMaxFileSize(10485760);
+        factory.setMaxRequestSize(10485760);
+        return factory.createMultipartConfig();
+    }
 	
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 		configurer.ignoreUnknownPathExtensions(false)
 				  .defaultContentType(MediaType.TEXT_HTML);
 	}
-	
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		registry.freeMarker();
 	}
-	
 	@Override
 	public void configureDefaultServletHandling(
 			DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
-	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/**")
 				.addResourceLocations("classpath:/static/");
 	}
-	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(loginInterceptor())

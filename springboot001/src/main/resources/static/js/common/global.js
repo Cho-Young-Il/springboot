@@ -15,3 +15,8 @@ var board = {
 		}
 	}
 };
+
+var loginMember;
+$.getJSON("/member/loginMember", function(data) {
+	loginMember = data;
+});

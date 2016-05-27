@@ -1,5 +1,6 @@
 package org.joyiism.controller;
 
+import java.io.File;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.joyiism.domain.Member;
 import org.joyiism.dto.Login;
 import org.joyiism.service.MemberService;
 import org.joyiism.util.BCryptEncoder;
+import org.joyiism.util.UploadFileUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
 @Controller("MemberController")
@@ -49,7 +52,8 @@ public class MemberController {
 		logger.info("execute member login controller");
 		Map<String, Object> jsonData = new HashMap<>();
 		try {
-			Member loginMember = memberService.exist(login);
+			Login loginMember = memberService.exist(login);
+			
 			if(loginMember != null) {
 				logger.info("new login success");
 				session.setAttribute("loginMember", loginMember);
@@ -77,9 +81,9 @@ public class MemberController {
 			HttpServletResponse response, HttpSession session) {
 		logger.info("execute logout controller");
 		try {
-			Member loginMember = (Member)session.getAttribute("loginMember");
+			Login loginMember = (Login)session.getAttribute("loginMember");
 			if(loginMember != null) {
-				session.removeAttribute("login");
+				session.removeAttribute("loginMember");
 				session.invalidate();
 				
 				Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
@@ -94,5 +98,41 @@ public class MemberController {
 		} catch (Exception e) {
 			logger.error("error logout controller", e);
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="loginMember", method=RequestMethod.GET)
+	public Login getSession(HttpSession session) {
+		logger.info("execute get session");
+		return (Login)session.getAttribute("loginMember");
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="updateImage", method=RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	public String updateImage(MultipartFile file, HttpSession session) {
+		logger.info("execute member update image");
+		
+		String retString = null;
+		final String base = "/images/base-user.png";
+		Login loginMember = (Login)session.getAttribute("loginMember");
+		String mphoto = loginMember.getMphoto();		
+		File path = new File("src/main/resources/static/attachfile");
+
+		try {
+			String savedDir = UploadFileUtil.uploadImageFile(
+				path.getAbsolutePath(), file.getBytes(), "member",
+				!mphoto.equals(base) ? mphoto : file.getOriginalFilename())
+			.get("imagePath");
+			
+			if(savedDir.equals(mphoto)) {
+				memberService.updateImage(savedDir, loginMember.getMno());
+				loginMember.setMphoto(savedDir);
+				session.setAttribute("loginMember", loginMember);
+			}
+		} catch (Exception e) {
+			logger.error("error memger update image", e);
+			retString = e.getMessage();
+		}
+		return retString;
 	}
 }

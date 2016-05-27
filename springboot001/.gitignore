@@ -11,4 +11,5 @@ gradle-wrapper.properties
 /node_server/pool.js
 /bower_components/
 /src/main/resources/static/lib/
+/src/main/resources/static/attachfile/**/
 /src/main/webapp/views/test/*

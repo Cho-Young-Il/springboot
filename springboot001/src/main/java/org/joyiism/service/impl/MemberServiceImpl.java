@@ -28,12 +28,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public Member exist(Login login) throws Exception {
+	public Login exist(Login login) throws Exception {
 		logger.info("check member exist");
 		Member member = memberDao.findByMid(login.getMid());
-		if(BCryptEncoder.matches(login.getMpwd(), member.getMpwd())
-			&& member != null) {
-			return member;
+		if(BCryptEncoder.matches(login.getMpwd(), member.getMpwd()) && member != null) {
+			return new Login(member.getMno(), member.getMid(), 
+				member.getMemail(), member.getMname(), member.getMphoto());
 		}
 		return null;
 	}
@@ -45,8 +45,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public Member checkLoginBefore(String value) throws Exception {
+	public Login checkLoginBefore(String value) throws Exception {
 		logger.info("execute check member width sessionkey method : member service");
-		return memberDao.checkMemberWithSessionKey(value);
+		Member member = memberDao.checkMemberWithSessionKey(value);
+		return new Login(member.getMno(), member.getMid(), 
+			member.getMemail(), member.getMname(), member.getMphoto());
+	}
+	
+	@Override
+	public void updateImage(String savedDir, int mno) throws Exception {
+		logger.info("execute update member image : member service");
+		memberDao.updateImage(savedDir, mno);
 	}
 }

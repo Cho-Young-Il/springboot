@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.joyiism.domain.Member;
+import org.joyiism.dto.Login;
 import org.joyiism.service.MemberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +28,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
 			
 			if(loginCookie != null) {
-				Member member = memberService.checkLoginBefore(loginCookie.getValue());
+				Login member = memberService.checkLoginBefore(loginCookie.getValue());
 				logger.info("Member : " + member);
 				
 				if(member != null) {

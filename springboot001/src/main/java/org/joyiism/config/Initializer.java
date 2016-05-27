@@ -1,5 +1,6 @@
 package org.joyiism.config;
 
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration.Dynamic;
@@ -20,5 +21,6 @@ public class Initializer implements WebApplicationInitializer {
 				"dispatcher", new DispatcherServlet(context));
 		dynamic.addMapping("/");
 		dynamic.setLoadOnStartup(1);
-    }
+		dynamic.setMultipartConfig(context.getBean(MultipartConfigElement.class));
+    }	
 }
