@@ -13,19 +13,19 @@
 </head>
 <body>
 	<#include "../header.ftl">
-    
-    <!-- Main Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+	
+	<!-- Main Content -->
+	<div class="container">
+	    <div class="row">
+	        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 				<h1>Success Login</h1>
-            </div>
-        </div>
-    </div>
-    
-    <#include "../footer.ftl">
-    <#include "../board/modal/profile.ftl">
-    
+	        </div>
+	    </div>
+	</div>
+	
+	<#include "../footer.ftl">
+	<#include "../board/modal/profile.ftl">
+	
 	<script src="/lib/jquery/jquery.min.js"></script>
 	<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/lib/clean-blog/clean-blog.min.js"></script>

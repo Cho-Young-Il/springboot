@@ -12,7 +12,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 @EnableWebMvcSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
-    protected void configure(HttpSecurity http) throws Exception {
+	protected void configure(HttpSecurity http) throws Exception {
 		CharacterEncodingFilter characterEncodingFilter = 
 				new CharacterEncodingFilter();
 		characterEncodingFilter.setEncoding("UTF-8");
@@ -20,15 +20,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.addFilterBefore(characterEncodingFilter, CsrfFilter.class);
 		http.addFilterBefore(new XSSFilter(), CsrfFilter.class);
-    	http
-        .authorizeRequests()
-            .antMatchers("/**", "/resources/**").permitAll()
-            .and()
-        .logout()
-            .logoutUrl("/logout")
-            .logoutSuccessUrl("/")
-            .and()
-        .csrf().disable()
-        .httpBasic();
-    }
+		http
+	    .authorizeRequests()
+	        .antMatchers("/**", "/resources/**").permitAll()
+	        .and()
+	    .logout()
+	        .logoutUrl("/logout")
+	        .logoutSuccessUrl("/")
+	        .and()
+	    .csrf().disable()
+	    .httpBasic();
+	}
 }

@@ -54,12 +54,12 @@ public class AppConfiguration extends WebMvcConfigurerAdapter {
 		return new AuthInterceptor();
 	}
 	@Bean
-    public MultipartConfigElement multipartConfigElement() {
-        MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setMaxFileSize(10485760);
-        factory.setMaxRequestSize(10485760);
-        return factory.createMultipartConfig();
-    }
+	public MultipartConfigElement multipartConfigElement() {
+	    MultipartConfigFactory factory = new MultipartConfigFactory();
+	    factory.setMaxFileSize(10485760);
+	    factory.setMaxRequestSize(10485760);
+	    return factory.createMultipartConfig();
+	}
 	
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {

@@ -22,5 +22,5 @@ public class Initializer implements WebApplicationInitializer {
 		dynamic.addMapping("/");
 		dynamic.setLoadOnStartup(1);
 		dynamic.setMultipartConfig(context.getBean(MultipartConfigElement.class));
-    }	
+	}	
 }

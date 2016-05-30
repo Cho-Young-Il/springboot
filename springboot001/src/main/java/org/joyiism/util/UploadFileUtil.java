@@ -33,7 +33,7 @@ public class UploadFileUtil {
 			String savedPath = null;
 			File target = null;
 			
-			if(!originalName.startsWith("/attachfile")) {
+			if(!originalName.startsWith(ROOT)) {
 				logger.info("image file upload");
 				
 				savedName = uid.toString() + "_" + originalName;
