@@ -15,10 +15,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.FileCopyUtils;
 
-public class UploadFileUtil {
+public class AttachfileUtil {
 	private static final String ROOT = "/attachfile";
 	private static final Logger logger = 
-			LoggerFactory.getLogger(UploadFileUtil.class);
+			LoggerFactory.getLogger(AttachfileUtil.class);
 	
 	public static Map<String, String> uploadImageFile(String uploadPath, byte[] fileData, 
 			String controller, String originalName) throws Exception {
@@ -58,6 +58,10 @@ public class UploadFileUtil {
 			throw new Exception("upload file is not image");
 		}
 		return retMap;
+	}
+	
+	public static void deleteFile(String savedDir) throws Exception {
+		new File(savedDir).delete();
 	}
 	
 	private static String calcPath(String uploadPath) {

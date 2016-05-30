@@ -7,7 +7,7 @@ if(!loginMember) {
 		$("#profileModal #profileMname").text(loginMember.mname);
 		$("#profileModal #profileMid").text(loginMember.mid);
 		$("#profileModal input[name=profileMemail]").val(loginMember.memail);
-		var baseUserImage = "/images/base-user.png";
+		var baseUserImage = board.modal.profile.baseUserIcon;
 		$("#profileModal #profileImage").attr("src", 
 				loginMember.mphoto == baseUserImage ? baseUserImage : loginMember.mphoto);
 		board.modal.profile.modal.fadeIn("slow");
@@ -60,8 +60,12 @@ if(!loginMember) {
 	
 	$("#profileModal #profileImageDelete").click(function(event) {
 		event.preventDefault();
-		//.. 삭제 로직...
-		$("#profileImage").attr("src", board.modal.profile.baseUserIcon);
+		
+		$.get("/member/deleteImage", function(data) {
+			var baseUserIcon = board.modal.profile.baseUserIcon;
+			$("#profileImage").attr("src", baseUserIcon);
+			loginMember.mphoto = baseUserIcon;
+		});
 	});
 }
 
@@ -77,6 +81,7 @@ function uploadFile(formData) {
 			if(data) {
 				alert("Error : " + data);
 			}
+			
 		}
 	});
 }

@@ -22,8 +22,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void add(Member member) throws Exception{
 		logger.info("execute member insert");
-		member.setMphoto("none");
-		member.setMsessionKey("none");
 		memberDao.save(member);
 	}
 	

@@ -14,7 +14,7 @@ import org.joyiism.domain.Member;
 import org.joyiism.dto.Login;
 import org.joyiism.service.MemberService;
 import org.joyiism.util.BCryptEncoder;
-import org.joyiism.util.UploadFileUtil;
+import org.joyiism.util.AttachfileUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,9 @@ import org.springframework.web.util.WebUtils;
 @RequestMapping("/member/*")
 public class MemberController {
 	@Autowired private MemberService memberService;
-	private final int expiry = 60 * 60 * 24 * 7;
+	private final int EXPIRY = 60 * 60 * 24 * 7;
+	private final String STATIC_ROOT = "src/main/resources/static";
+	private final String BASE_MPHOTO = "/images/base-user.png";
 	private static final Logger logger = 
 			LoggerFactory.getLogger(MemberController.class);
 	
@@ -39,6 +41,8 @@ public class MemberController {
 		logger.info("execute member add controller");
 		try {
 			member.setMpwd(BCryptEncoder.encode(member.getMpwd()));
+			member.setMphoto(BASE_MPHOTO);
+			member.setMsessionKey("none");
 			memberService.add(member);
 		} catch (Exception e) {
 			logger.error("error member add controller", e);
@@ -61,12 +65,12 @@ public class MemberController {
 
 				if(login.isUseCookie()) {
 					logger.info("remember me.");
-					Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * expiry));
+					Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * EXPIRY));
 					memberService.keepLogin(session.getId(), sessionLimit, loginMember.getMid());
 					
 					Cookie loginCookie = new Cookie("loginCookie", session.getId());
 					loginCookie.setPath("/");
-					loginCookie.setMaxAge(expiry);
+					loginCookie.setMaxAge(EXPIRY);
 					response.addCookie(loginCookie);	
 				}
 			}
@@ -103,25 +107,24 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value="loginMember", method=RequestMethod.GET)
 	public Login getSession(HttpSession session) {
-		logger.info("execute get session");
+		logger.info("execute get session controller");
 		return (Login)session.getAttribute("loginMember");
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="updateImage", method=RequestMethod.POST, produces="text/plain; charset=UTF-8")
 	public String updateImage(MultipartFile file, HttpSession session) {
-		logger.info("execute member update image");
+		logger.info("execute member update image controller");
 		
 		String retString = null;
-		final String base = "/images/base-user.png";
 		Login loginMember = (Login)session.getAttribute("loginMember");
 		String mphoto = loginMember.getMphoto();		
-		File path = new File("src/main/resources/static/attachfile");
+		File path = new File(STATIC_ROOT + "/attachfile");
 
 		try {
-			String savedDir = UploadFileUtil.uploadImageFile(
+			String savedDir = AttachfileUtil.uploadImageFile(
 				path.getAbsolutePath(), file.getBytes(), "member",
-				!mphoto.equals(base) ? mphoto : file.getOriginalFilename())
+				!mphoto.equals(BASE_MPHOTO) ? mphoto : file.getOriginalFilename())
 			.get("imagePath");
 			
 			if(savedDir.equals(mphoto)) {
@@ -134,5 +137,21 @@ public class MemberController {
 			retString = e.getMessage();
 		}
 		return retString;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="deleteImage", method=RequestMethod.GET)
+	public void deleteImage(HttpSession session) {
+		logger.info("execute member delete image controller");
+		
+		try {
+			Login loginMember = (Login)session.getAttribute("loginMember");
+			AttachfileUtil.deleteFile(STATIC_ROOT + loginMember.getMphoto());
+			memberService.updateImage(BASE_MPHOTO, loginMember.getMno());
+			loginMember.setMphoto(BASE_MPHOTO);
+			session.setAttribute("loginMember", loginMember);
+		} catch (Exception e) {
+			logger.error("error member delete image controller", e);
+		}
 	}
 }
