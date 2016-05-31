@@ -18,11 +18,23 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired private MemberDao memberDao;
 	private static final Logger logger = 
 			LoggerFactory.getLogger(MemberController.class);
+	private static final String NAME_REGEX = "[가-힣]{2,4}|[a-zA-Z]{3,20}";
+	private static final String EMAIL_REGEX = "([\\w-]+(?:\\.[\\w-]+)*)@"
+			+ "((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)";
 	
 	@Override
-	public void add(Member member) throws Exception{
-		logger.info("execute member insert");
-		memberDao.save(member);
+	public void add(Member member, String mpwdConfirm) throws Exception {
+		logger.info("execute member insert"); 
+		String encodedPass = member.getMpwd();
+		if(!BCryptEncoder.matches(mpwdConfirm, encodedPass)) {
+			throw new Exception("ERR_PASS");
+		} else if(!member.getMname().matches(NAME_REGEX)) {
+			throw new Exception("ERR_NAME");
+		} else if(!member.getMemail().matches(EMAIL_REGEX)) {
+			throw new Exception("ERR_EMAIL");
+		} else {
+			memberDao.save(member);			
+		}
 	}
 	
 	@Override

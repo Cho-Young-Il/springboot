@@ -51,14 +51,27 @@ $("#memAddBtn").click(function() {
 	var regex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 	if(!regex.test($memail.val())) {
 		alert("Check email address");
+		$email.focus().select();
 		return false;
 	}
 	
 	$.post("/member/add",
 		$("#signup").serialize()
 	, function(data) {
-		alert("Complete registration");
-		location.href = "/";
+		if(data == "ERR_PASS") {
+			alert("Passwords are not same");
+			$mpwd.val("").focus();
+			$mpwdConfirm.val("");
+		} else if(data == "ERR_NAME") {
+			alert("Cannot include null with namespace");
+			$mname.focus().select();
+		} else if(data == "ERR_EMAIL") {
+			alert("Check email address");
+			$email.focus().select();
+		} else {
+			alert("Complete registration");
+			location.href = "/";			
+		}
 	}).fail(function(e) {
 		alert("Fail registration");
 		$mid.val("").focus();

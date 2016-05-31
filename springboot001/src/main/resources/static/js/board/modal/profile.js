@@ -44,16 +44,18 @@ if(!loginMember) {
 			alert("Only image file can be uploaded");
 			return false;
 		} else {
+			var formData = new FormData();
+			formData.append('file', imageFile);
+			if(!uploadFile(formData)) {
+				return false;
+			}
+			
 			var reader = new FileReader();
 			reader.readAsDataURL(imageFile);
 			reader.onload = function(event) {
 				var imageThumnail = event.target.result;
 				$("#profileImage").attr("src", imageThumnail);
 			}
-		
-			var formData = new FormData();
-			formData.append('file', imageFile);
-			uploadFile(formData);
 		}
 	});
 	
@@ -80,8 +82,9 @@ function uploadFile(formData) {
 		success : function(data) {
 			if(data) {
 				alert("Error : " + data);
+				return false;
 			}
-			
+			return true;
 		}
 	});
 }

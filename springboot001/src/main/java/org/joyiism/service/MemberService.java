@@ -6,7 +6,7 @@ import org.joyiism.domain.Member;
 import org.joyiism.dto.Login;
 
 public interface MemberService {
-	void add(Member member) throws Exception;
+	void add(Member member, String mpwdConfirm) throws Exception;
 	Login exist(Login login) throws Exception;
 	void keepLogin(String msessionKey, Date next, String mid) throws Exception;
 	Login checkLoginBefore(String value) throws Exception;

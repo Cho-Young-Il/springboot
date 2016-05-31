@@ -37,16 +37,27 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping(value="add", method=RequestMethod.POST)
-	public void regist(Member member) {
+	public String regist(Member member, String mpwdConfirm, HttpServletResponse res) {
 		logger.info("execute member add controller");
+		
+		String ERR = null;
 		try {
 			member.setMpwd(BCryptEncoder.encode(member.getMpwd()));
 			member.setMphoto(BASE_MPHOTO);
 			member.setMsessionKey("none");
-			memberService.add(member);
+			memberService.add(member, mpwdConfirm);
 		} catch (Exception e) {
 			logger.error("error member add controller", e);
+			String exception = e.getMessage();
+			if(exception.equals("ERR_PASS")) {
+				ERR = "ERR_PASS";
+			} else if(exception.equals("ERR_NAME")) {
+				ERR = "ERR_NAME";
+			} else if(exception.equals("ERR_EMAIL")) {
+				ERR = "ERR_EMAIL";
+			}
 		}
+		return ERR;
 	}
 	
 	@ResponseBody
@@ -116,7 +127,7 @@ public class MemberController {
 	public String updateImage(MultipartFile file, HttpSession session) {
 		logger.info("execute member update image controller");
 		
-		String retString = null;
+		String ERR = null;
 		Login loginMember = (Login)session.getAttribute("loginMember");
 		String mphoto = loginMember.getMphoto();		
 		File path = new File(STATIC_ROOT + "/attachfile");
@@ -134,9 +145,9 @@ public class MemberController {
 			}
 		} catch (Exception e) {
 			logger.error("error memger update image", e);
-			retString = e.getMessage();
+			ERR = e.getMessage();
 		}
-		return retString;
+		return ERR;
 	}
 	
 	@ResponseBody
