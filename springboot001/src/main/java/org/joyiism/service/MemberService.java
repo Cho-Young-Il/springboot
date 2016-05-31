@@ -15,4 +15,5 @@ public interface MemberService {
 	void updateImage(String savedDir, int mno) throws Exception;
 	void updateProfile(Member member, String mpwdConfirm, HttpSession session) throws Exception;
 	void updatePwd(String curPwd, String newPwd, String cPwd, HttpSession session) throws Exception;
+	void delete(String mpwd, String mpwdConfirm, HttpSession session) throws Exception;
 }

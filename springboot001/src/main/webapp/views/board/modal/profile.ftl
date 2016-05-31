@@ -64,8 +64,9 @@
 							name="mpwdConfirm" id="mpwdConfirm" type="password">
 					</div>
 					<div class="modify-modal-btn">
-						<input type="button" id="modProfileBtn" class="btn btn-primary"
-							value="Modify"> 
+						<button type="submit" id="modProfileBtn" class="btn btn-primary">
+							Modify
+						</button> 
 						<a class="btn btn-success" id="showModPassForm">
 							<i class="fa fa-fw fa-caret-down"></i>
 						</a>
@@ -100,8 +101,9 @@
 							title="At least 8 characters">
 					</div>
 					<div class="modify-modal-btn">
-						<input type="submit" id="modPassBtn"
-							class="btn btn-warning" value="Modify Password">
+						<button type="submit" id="modPassBtn" class="btn btn-warning">
+							MODIFY PASSWORD
+						</button>
 					</div>
 				</form>
 			</div>
@@ -119,29 +121,30 @@
 					aria-hidden="true">×</button>
 				<h4 class="modal-title text-danger">Delete your account?</h4>
 			</div>
-			<div class="modal-body">
-				<div class="input-group">
-					<span class="input-group-addon"> 
-						<i class="glyphicon glyphicon-lock mycolor"></i>
-					</span> 
-					<input size="20" maxlength="20" class="form-control"
-						required="required" placeholder="Password" name="mpwd" id="mpwd"
-						type="password" pattern=".{8,}" title="At least 8 characters">
+			<form id="deleteMemberForm" role="form">
+				<div class="modal-body">
+					<div class="input-group">
+						<span class="input-group-addon"> 
+							<i class="glyphicon glyphicon-lock mycolor"></i>
+						</span> 
+						<input size="20" maxlength="20" class="form-control"
+							required="required" placeholder="Password" 
+							name="mpwd" id="mpwd" type="password">
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon"> 
+							<i class="glyphicon glyphicon-lock mycolor"></i>
+						</span> 
+						<input size="60" maxlength="255" class="form-control"
+							required="required" placeholder="Confirm Password"
+							name="mpwdConfirm" id="mpwdConfirm" type="password">
+					</div>
 				</div>
-				<div class="input-group">
-					<span class="input-group-addon"> 
-						<i class="glyphicon glyphicon-lock mycolor"></i>
-					</span> 
-					<input size="60" maxlength="255" class="form-control"
-						required="required" placeholder="Confirm Password"
-						name="mpwdConfirm" id="mpwdConfirm" type="password"
-						pattern=".{8,}" title="At least 8 characters">
+				<div class="modal-footer">
+					<a class="btn btn-default" data-dismiss="modal">Cancle</a> 
+					<a class="btn btn-danger" id="deleteMemberBtn">Delete</a>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<a class="btn btn-default" data-dismiss="modal">Cancle</a> 
-				<a class="btn btn-danger">Delete</a>
-			</div>
+			</form>
 		</div>
 	</div>
 </div>

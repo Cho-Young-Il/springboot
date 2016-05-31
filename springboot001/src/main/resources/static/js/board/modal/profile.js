@@ -4,6 +4,8 @@ if(!loginMember) {
 	
 	$("#myProfile").click(function(event) {
 		event.preventDefault();
+		$("#profileModal input").val("");
+		$("#deleteMemberForm input").val("");
 		$("#profileModal #profileMname").text(loginMember.mname);
 		$("#profileModal #profileMid").text(loginMember.mid);
 		$("#profileModal input[name=memail]").val(loginMember.memail);
@@ -71,7 +73,7 @@ if(!loginMember) {
 	});
 	
 	
-	$("#profileModal #modProfileBtn").click(function() {
+	$("#profileModal #modProfileForm").submit(function() {
 		var $memail = $("#modProfileForm #memail");
 		var $mpwd = $("#modProfileForm #mpwd");
 		var $mpwdConfirm = $("#modProfileForm #mpwdConfirm");
@@ -140,6 +142,36 @@ if(!loginMember) {
 			$curPwd.val("").focus();
 			$newPwd.val("");
 			$cPwd.val("");
+		});
+		return false;
+	});
+	
+	$("#deleteMemberBtn").click(function(event) {
+		event.preventDefault();
+		
+		var $mpwd = $("#deleteMemberForm #mpwd");
+		var $mpwdConfirm = $("#deleteMemberForm #mpwdConfirm");
+		
+		if($mpwd.val() != $mpwdConfirm.val()) {
+			alert("Passwords are not same");
+			$mpwd.val("").focus();
+			$mpwdConfirm.val("");
+			return false;
+		}
+		
+		$("#profileModal #profileImageDelete").trigger("click");
+		
+		$.post("/member/delete",
+			$("#deleteMemberForm").serialize()	
+		, function(data) {
+			if(data) {
+				alert("Check Passwords");
+				$mpwd.val("").focus();
+				$mpwdConfirm.val("");
+			} else {
+				alert("Deleted your account");
+				location.href="/member/logout";
+			}
 		});
 		return false;
 	});

@@ -49,11 +49,11 @@ public class MemberController {
 		} catch (Exception e) {
 			logger.error("error member add controller", e);
 			String exception = e.getMessage();
-			if(exception.equals("ERR_PASS")) {
+			if("ERR_PASS".equals(exception)) {
 				ERR = "ERR_PASS";
-			} else if(exception.equals("ERR_NAME")) {
+			} else if("ERR_NAME".equals(exception)) {
 				ERR = "ERR_NAME";
-			} else if(exception.equals("ERR_EMAIL")) {
+			} else if("ERR_EMAIL".equals(exception)) {
 				ERR = "ERR_EMAIL";
 			}
 		}
@@ -136,9 +136,9 @@ public class MemberController {
 		} catch (Exception e) {
 			logger.error("error member update profile controller", e);
 			String exception = e.getMessage();
-			if(exception.equals("ERR_PASS")) {
+			if("ERR_PASS".equals(exception)) {
 				ERR = "ERR_PASS";
-			} else if(exception.equals("ERR_EMAIL")) {
+			} else if("ERR_EMAIL".equals(exception)) {
 				ERR = "ERR_EMAIL";
 			}
 		}
@@ -185,7 +185,7 @@ public class MemberController {
 		} catch (Exception e) {
 			logger.error("error member update password controller", e);
 			String exception = e.getMessage();
-			if(exception.equals("ERR_PASS")) {
+			if("ERR_PASS".equals(exception)) {
 				ERR = "ERR_PASS";
 			}
 		}
@@ -199,14 +199,36 @@ public class MemberController {
 		
 		try {
 			Login loginMember = (Login)session.getAttribute("loginMember");
-			AttachfileUtil.deleteFile(STATIC_ROOT + loginMember.getMphoto());
+			String mphoto = loginMember.getMphoto();
 			
-			memberService.updateImage(BASE_MPHOTO, loginMember.getMno());
+			if(!mphoto.equals(BASE_MPHOTO)) {
+				AttachfileUtil.deleteFile(STATIC_ROOT + loginMember.getMphoto());
+				memberService.updateImage(BASE_MPHOTO, loginMember.getMno());
+			}
 			
 			loginMember.setMphoto(BASE_MPHOTO);
 			session.setAttribute("loginMember", loginMember);
 		} catch (Exception e) {
 			logger.error("error member delete image controller", e);
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="delete", method=RequestMethod.POST)
+	public String delete(String mpwd, String mpwdConfirm,
+			HttpSession session, HttpServletResponse response) {
+		logger.info("execute member delete controller");
+		
+		String ERR = null;
+		try {
+			memberService.delete(mpwd, mpwdConfirm, session);
+		} catch (Exception e) {
+			logger.error("error member delete controller", e);
+			String exception = e.getMessage();
+			if("ERR_PASS".equals(exception)) {
+				ERR = "ERR_PASS";
+			}
+		}
+		return ERR;
 	}
 }

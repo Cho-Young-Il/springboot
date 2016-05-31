@@ -84,7 +84,7 @@ public class MemberServiceImpl implements MemberService {
 		String mpwd = member.getMpwd();
 		String encodedPass = memberDao.findByMid(loginMember.getMid()).getMpwd();
 		
-		if(mpwd.isEmpty() || mpwdConfirm.isEmpty() || 
+		if(mpwd.isEmpty() || !mpwd.equals(mpwdConfirm) ||
 				!BCryptEncoder.matches(mpwd, encodedPass)) {
 			throw new Exception("ERR_PASS");
 		} else if(!memail.matches(EMAIL_REGEX)) {
@@ -103,11 +103,26 @@ public class MemberServiceImpl implements MemberService {
 		Login loginMember = (Login)session.getAttribute("loginMember");
 		String encodedPass = memberDao.findByMid(loginMember.getMid()).getMpwd();
 		
-		if(newPwd.isEmpty() || cPwd.isEmpty() || !newPwd.equals(cPwd)
-			|| curPwd.equals(newPwd) || !BCryptEncoder.matches(curPwd, encodedPass)) {
+		if(newPwd.isEmpty() || !newPwd.equals(cPwd) ||
+				!BCryptEncoder.matches(curPwd, encodedPass)) {
 			throw new Exception("ERR_PASS");
 		} else {
 			memberDao.updatePwd(BCryptEncoder.encode(newPwd), loginMember.getMno());
+		}
+	}
+	
+	@Override
+	public void delete(String mpwd, String mpwdConfirm, HttpSession session) throws Exception {
+		logger.info("execute member delete service");
+		
+		Login loginMember = (Login)session.getAttribute("loginMember");
+		String encodedPass = memberDao.findByMid(loginMember.getMid()).getMpwd();
+		
+		if(mpwd.isEmpty() || !mpwd.equals(mpwdConfirm) ||
+				!BCryptEncoder.matches(mpwd, encodedPass)) {
+			throw new Exception("ERR_PASS");
+		} else {
+			memberDao.delete(loginMember.getMno());
 		}
 	}
 }
