@@ -12,7 +12,7 @@ $("#close").click(function() {
 
 
 /* member regist ajax */
-$("#memAddBtn").click(function() {
+$("#signup").submit(function() {
 	var $mpwd = $("#signup #mpwd");
 	var $mpwdConfirm = $("#signup #mpwdConfirm");
 	var $mname = $("#signup #mname");
@@ -51,7 +51,7 @@ $("#memAddBtn").click(function() {
 	var regex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 	if(!regex.test($memail.val())) {
 		alert("Check email address");
-		$email.focus().select();
+		$memail.focus().select();
 		return false;
 	}
 	
@@ -67,10 +67,10 @@ $("#memAddBtn").click(function() {
 			$mname.focus().select();
 		} else if(data == "ERR_EMAIL") {
 			alert("Check email address");
-			$email.focus().select();
+			$memail.focus().select();
 		} else {
 			alert("Complete registration");
-			location.href = "/";			
+			location.href = "/";
 		}
 	}).fail(function(e) {
 		alert("Fail registration");

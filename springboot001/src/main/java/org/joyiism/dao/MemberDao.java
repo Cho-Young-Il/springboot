@@ -24,4 +24,12 @@ public interface MemberDao extends JpaRepository<Member, Integer>{
 	@Modifying @Query(value="update member set mphoto = ?1"
 			+ " where mno = ?2", nativeQuery=true)
 	void updateImage(String savedDir, int mno);
+	
+	@Modifying @Query(value="update member set memail = ?1"
+			+ " where mno = ?2", nativeQuery=true)
+	void updateProfile(String memail, int mno);
+	
+	@Modifying @Query(value="update member set mpwd = ?1"
+			+ " where mno = ?2", nativeQuery=true)
+	void updatePwd(String newPwd, int mno);
 }

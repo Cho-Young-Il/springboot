@@ -37,50 +37,57 @@
 						</li>
 					</ul>
 				</div>
-				<hr>
-				<div class="input-group" id="emailDupCheck">
-					<span class="input-group-addon">
-						<i class="glyphicon glyphicon-envelope mycolor"></i>
-					</span> 
-					<input size="60" maxlength="255" class="form-control"
-						placeholder="Email" required="required"
-						name="profileMemail" id="profileMemail" type="email">
-				</div>
-				<div class="input-group">
-					<span class="input-group-addon">
-						<i class="glyphicon glyphicon-lock mycolor"></i>
-					</span> 
-					<input size="20" maxlength="20" class="form-control"
-						required="required" placeholder="Password" name="mpwd"
-						id="mpwd" type="password" pattern=".{8,}" 
-						title="At least 8 characters">
-				</div>
-				<div class="input-group">
-					<span class="input-group-addon">
-						<i class="glyphicon glyphicon-lock mycolor"></i>
-					</span> 
-					<input size="60" maxlength="255" class="form-control"
-						required="required" placeholder="Confirm Password"
-						name="mpwdConfirm" id="mpwdConfirm" type="password"
-						pattern=".{8,}" title="At least 8 characters">
-				</div>
-				<div class="modify-modal-btn">
-					<input type="button" id="modBtn" class="btn btn-primary"
-						value="Modify"> 
-					<a class="btn btn-success" id="showModPassDiv">
-						<i class="fa fa-fw fa-caret-down"></i>
-					</a>
-				</div>
 				
-				<div class="mod-pass-div">
-				<hr>
+				<form id="modProfileForm" role="form"><hr>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="glyphicon glyphicon-envelope mycolor"></i>
+						</span> 
+						<input size="60" maxlength="255" class="form-control"
+							placeholder="Email" required="required"
+							name="memail" id="memail" type="email">
+					</div>
 					<div class="input-group">
 						<span class="input-group-addon">
 							<i class="glyphicon glyphicon-lock mycolor"></i>
 						</span> 
 						<input size="20" maxlength="20" class="form-control"
-							required="required" placeholder="Current Password" name="mpwd"
-							id="mpwd" type="password" pattern=".{8,}" 
+							required="required" placeholder="Password" name="mpwd"
+							id="mpwd" type="password">
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="glyphicon glyphicon-lock mycolor"></i>
+						</span> 
+						<input size="60" maxlength="255" class="form-control"
+							required="required" placeholder="Confirm Password"
+							name="mpwdConfirm" id="mpwdConfirm" type="password">
+					</div>
+					<div class="modify-modal-btn">
+						<input type="button" id="modProfileBtn" class="btn btn-primary"
+							value="Modify"> 
+						<a class="btn btn-success" id="showModPassForm">
+							<i class="fa fa-fw fa-caret-down"></i>
+						</a>
+					</div>
+				</form>
+				
+				<form id="modPassForm" role="form"><hr>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="glyphicon glyphicon-lock mycolor"></i>
+						</span> 
+						<input size="20" maxlength="20" class="form-control"
+							required="required" placeholder="Current Password" name="curPwd"
+							id="curPwd" type="password">
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="glyphicon glyphicon-lock mycolor"></i>
+						</span> 
+						<input size="20" maxlength="20" class="form-control"
+							required="required" placeholder="New Password" name="newPwd"
+							id="newPwd" type="password" pattern=".{8,}" 
 							title="At least 8 characters">
 					</div>
 					<div class="input-group">
@@ -88,24 +95,15 @@
 							<i class="glyphicon glyphicon-lock mycolor"></i>
 						</span> 
 						<input size="20" maxlength="20" class="form-control"
-							required="required" placeholder="New Password" name="mpwd"
-							id="mpwd" type="password" pattern=".{8,}" 
-							title="At least 8 characters">
-					</div>
-					<div class="input-group">
-						<span class="input-group-addon">
-							<i class="glyphicon glyphicon-lock mycolor"></i>
-						</span> 
-						<input size="20" maxlength="20" class="form-control"
-							required="required" placeholder="Confirm Password" name="mpwd"
-							id="mpwd" type="password" pattern=".{8,}" 
+							required="required" placeholder="Confirm Password" name="cPwd"
+							id="cPwd" type="password" pattern=".{8,}" 
 							title="At least 8 characters">
 					</div>
 					<div class="modify-modal-btn">
-						<input type="button" id="modPass"
+						<input type="submit" id="modPassBtn"
 							class="btn btn-warning" value="Modify Password">
 					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>

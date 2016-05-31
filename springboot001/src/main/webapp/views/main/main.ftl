@@ -99,7 +99,7 @@
 									name="mpwdConfirm" id="mpwdConfirm" type="password"
 									pattern=".{8,}" title="At least 8 characters">
 							</div>
-							<div class="input-group margin-bottom-20" id="emailDupCheck">
+							<div class="input-group margin-bottom-20">
 								<span class="input-group-addon">
 									<i class="glyphicon glyphicon-envelope mycolor"></i>
 								</span> 
@@ -110,7 +110,7 @@
 							<br/>
 							<div class="row">
 								<div class="col-md-12">
-									<button id="memAddBtn" type="button" class="btn btn-success">
+									<button id="memAddBtn" type="submit" class="btn btn-success">
                     					<i class="fa fa-fw fa-user-plus"></i>Sign Up</button>
 								</div>
 							</div>

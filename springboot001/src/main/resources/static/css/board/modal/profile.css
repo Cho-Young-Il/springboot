@@ -106,7 +106,7 @@ body {
 	overflow: auto;
 }
 
-.mod-pass-div {
+#modPassForm {
 	display: none;
 }
 

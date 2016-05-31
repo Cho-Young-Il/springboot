@@ -37,7 +37,7 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping(value="add", method=RequestMethod.POST)
-	public String regist(Member member, String mpwdConfirm, HttpServletResponse res) {
+	public String regist(Member member, String mpwdConfirm) {
 		logger.info("execute member add controller");
 		
 		String ERR = null;
@@ -65,6 +65,7 @@ public class MemberController {
 	public Map<String, Object> login(Login login, HttpSession session,
 			HttpServletResponse response) {
 		logger.info("execute member login controller");
+	
 		Map<String, Object> jsonData = new HashMap<>();
 		try {
 			Login loginMember = memberService.exist(login);
@@ -95,6 +96,7 @@ public class MemberController {
 	public void logout(HttpServletRequest request, 
 			HttpServletResponse response, HttpSession session) {
 		logger.info("execute logout controller");
+	
 		try {
 			Login loginMember = (Login)session.getAttribute("loginMember");
 			if(loginMember != null) {
@@ -119,7 +121,28 @@ public class MemberController {
 	@RequestMapping(value="loginMember", method=RequestMethod.GET)
 	public Login getSession(HttpSession session) {
 		logger.info("execute get session controller");
+	
 		return (Login)session.getAttribute("loginMember");
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="updateProfile", method=RequestMethod.POST)
+	public String update(Member member, String mpwdConfirm, HttpSession session) {
+		logger.info("execute member update profile controller");
+		
+		String ERR = null;
+		try {
+			memberService.updateProfile(member, mpwdConfirm, session);
+		} catch (Exception e) {
+			logger.error("error member update profile controller", e);
+			String exception = e.getMessage();
+			if(exception.equals("ERR_PASS")) {
+				ERR = "ERR_PASS";
+			} else if(exception.equals("ERR_EMAIL")) {
+				ERR = "ERR_EMAIL";
+			}
+		}
+		return ERR;
 	}
 	
 	@ResponseBody
@@ -140,12 +163,31 @@ public class MemberController {
 			
 			if(savedDir.equals(mphoto)) {
 				memberService.updateImage(savedDir, loginMember.getMno());
+				
 				loginMember.setMphoto(savedDir);
 				session.setAttribute("loginMember", loginMember);
 			}
 		} catch (Exception e) {
 			logger.error("error memger update image", e);
 			ERR = e.getMessage();
+		}
+		return ERR;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="updatePwd", method=RequestMethod.POST)
+	public String updatePwd(String curPwd, String newPwd, String cPwd, HttpSession session) {
+		logger.info("execute member update password controller");
+		
+		String ERR = null;
+		try {
+			memberService.updatePwd(curPwd, newPwd, cPwd, session);
+		} catch (Exception e) {
+			logger.error("error member update password controller", e);
+			String exception = e.getMessage();
+			if(exception.equals("ERR_PASS")) {
+				ERR = "ERR_PASS";
+			}
 		}
 		return ERR;
 	}
@@ -158,7 +200,9 @@ public class MemberController {
 		try {
 			Login loginMember = (Login)session.getAttribute("loginMember");
 			AttachfileUtil.deleteFile(STATIC_ROOT + loginMember.getMphoto());
+			
 			memberService.updateImage(BASE_MPHOTO, loginMember.getMno());
+			
 			loginMember.setMphoto(BASE_MPHOTO);
 			session.setAttribute("loginMember", loginMember);
 		} catch (Exception e) {
