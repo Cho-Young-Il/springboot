@@ -44,21 +44,20 @@ if(!loginMember) {
 		var strExt = event.target.value.split('.').pop().toLowerCase();
 		if($.inArray(strExt, ["jpg", "jpeg", "png", "gif"]) == -1) {
 			alert("Only image file can be uploaded");
-			return false;
 		} else {
 			var formData = new FormData();
 			formData.append('file', imageFile);
-			if(!uploadFile(formData)) {
-				return false;
-			}
 			
-			var reader = new FileReader();
-			reader.readAsDataURL(imageFile);
-			reader.onload = function(event) {
-				var imageThumnail = event.target.result;
-				$("#profileImage").attr("src", imageThumnail);
+			if(!uploadFile(formData)) {
+				var reader = new FileReader();
+				reader.readAsDataURL(imageFile);
+				reader.onload = function(event) {
+					var imageThumnail = event.target.result;
+					$("#profileImage").attr("src", imageThumnail);
+				}
 			}
 		}
+		return false;
 	});
 	
 	
@@ -146,9 +145,7 @@ if(!loginMember) {
 		return false;
 	});
 	
-	$("#deleteMemberBtn").click(function(event) {
-		event.preventDefault();
-		
+	$("#deleteMemberForm").submit(function() {
 		var $mpwd = $("#deleteMemberForm #mpwd");
 		var $mpwdConfirm = $("#deleteMemberForm #mpwdConfirm");
 		
@@ -178,6 +175,7 @@ if(!loginMember) {
 }
 
 function uploadFile(formData) {
+	var isERR = false;
 	$.ajax({
 		url : "/member/updateImage",
 		data : formData,
@@ -188,9 +186,9 @@ function uploadFile(formData) {
 		success : function(data) {
 			if(data) {
 				alert("Error : " + data);
-				return false;
+				isERR = true;
 			}
-			return true;
 		}
 	});
+	return isERR;
 }

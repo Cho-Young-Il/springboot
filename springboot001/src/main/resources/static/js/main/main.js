@@ -85,7 +85,7 @@ $("#signup").submit(function() {
 
 
 /* login ajax */
-$("#signInBtn").click(function() {
+$("#signin").submit(function() {
 	$.post("/member/login",
 		$("#signin").serialize()
 	, function(data) {

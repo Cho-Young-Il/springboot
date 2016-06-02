@@ -22,6 +22,15 @@ public class Board {
 	@Column(name = "bno")
 	private int bno;
 	
+	@Column(name = "bgroup")
+	private int bgroup;
+	
+	@Column(name = "bgroup_seq")
+	private int bgroupSeq;
+	
+	@Column(name = "bdepth")
+	private int bdepth;
+	
 	@Column(name = "btitle", length = 255)
 	private String btitle;
 	
@@ -45,11 +54,14 @@ public class Board {
 	
 	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
 	private List<Attachfile> files;
-	
+
 	public Board() {}
-	public Board(int bno, String btitle, String bcontent, Date bregDate, Date bmodDate, Member member,
-			List<Comment> comments, List<Attachfile> files) {
+	public Board(int bno, int bgroup, int bgroupSeq, int bdepth, String btitle, String bcontent, Date bregDate,
+			Date bmodDate, Member member, List<Comment> comments, List<Attachfile> files) {
 		this.bno = bno;
+		this.bgroup = bgroup;
+		this.bgroupSeq = bgroupSeq;
+		this.bdepth = bdepth;
 		this.btitle = btitle;
 		this.bcontent = bcontent;
 		this.bregDate = bregDate;
@@ -64,6 +76,24 @@ public class Board {
 	}
 	public void setBno(int bno) {
 		this.bno = bno;
+	}
+	public int getBgroup() {
+		return bgroup;
+	}
+	public void setBgroup(int bgroup) {
+		this.bgroup = bgroup;
+	}
+	public int getBgroupSeq() {
+		return bgroupSeq;
+	}
+	public void setBgroupSeq(int bgroupSeq) {
+		this.bgroupSeq = bgroupSeq;
+	}
+	public int getBdepth() {
+		return bdepth;
+	}
+	public void setBdepth(int bdepth) {
+		this.bdepth = bdepth;
 	}
 	public String getBtitle() {
 		return btitle;
@@ -106,5 +136,12 @@ public class Board {
 	}
 	public void setFiles(List<Attachfile> files) {
 		this.files = files;
+	}
+	
+	@Override
+	public String toString() {
+		return "Board [bno=" + bno + ", bgroup=" + bgroup + ", bgroupSeq=" + bgroupSeq + ", bdepth=" + bdepth
+				+ ", btitle=" + btitle + ", bcontent=" + bcontent + ", bregDate=" + bregDate + ", bmodDate=" + bmodDate
+				+ ", member=" + member + ", comments=" + comments + ", files=" + files + "]";
 	}
 }

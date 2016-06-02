@@ -33,7 +33,6 @@
 						</li>
 						<li class="text-left">
 							<a class="btn btn-danger" id="profileImageDelete">Delete</a>
-							
 						</li>
 					</ul>
 				</div>
@@ -141,8 +140,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<a class="btn btn-default" data-dismiss="modal">Cancle</a> 
-					<a class="btn btn-danger" id="deleteMemberBtn">Delete</a>
+					<button class="btn btn-default" data-dismiss="modal">Cancle</button> 
+					<button class="btn btn-danger" id="deleteMemberBtn">Delete</button>
 				</div>
 			</form>
 		</div>

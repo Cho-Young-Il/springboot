@@ -161,7 +161,7 @@ public class MemberController {
 				!mphoto.equals(BASE_MPHOTO) ? mphoto : file.getOriginalFilename())
 			.get("imagePath");
 			
-			if(savedDir.equals(mphoto)) {
+			if(!savedDir.equals(mphoto)) {
 				memberService.updateImage(savedDir, loginMember.getMno());
 				
 				loginMember.setMphoto(savedDir);
