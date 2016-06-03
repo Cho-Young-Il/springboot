@@ -48,7 +48,7 @@ if(!loginMember) {
 			var formData = new FormData();
 			formData.append('file', imageFile);
 			
-			if(!uploadFile(formData)) {
+			if(!uploadFile(formData, "/member/updateImage")) {
 				var reader = new FileReader();
 				reader.readAsDataURL(imageFile);
 				reader.onload = function(event) {
@@ -174,21 +174,3 @@ if(!loginMember) {
 	});
 }
 
-function uploadFile(formData) {
-	var isERR = false;
-	$.ajax({
-		url : "/member/updateImage",
-		data : formData,
-		dataType : "text",
-		processData : false,
-		contentType : false,
-		type : "post",
-		success : function(data) {
-			if(data) {
-				alert("Error : " + data);
-				isERR = true;
-			}
-		}
-	});
-	return isERR;
-}

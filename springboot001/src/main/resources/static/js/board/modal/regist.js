@@ -1,0 +1,1 @@
+$("#newPostModal #bcontent").autoGrow();

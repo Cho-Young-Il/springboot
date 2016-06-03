@@ -20,3 +20,22 @@ var loginMember;
 $.getJSON("/member/loginMember", function(data) {
 	loginMember = data;
 });
+
+function uploadFile(formData, url) {
+	var isERR = false;
+	$.ajax({
+		url : url,
+		data : formData,
+		dataType : "text",
+		processData : false,
+		contentType : false,
+		type : "post",
+		success : function(data) {
+			if(data) {
+				alert("Error : " + data);
+				isERR = true;
+			}
+		}
+	});
+	return isERR;
+}

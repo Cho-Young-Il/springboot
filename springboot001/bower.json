@@ -16,15 +16,17 @@
 		"bootstrap": "~3.3.4",
 		"jquery": "2.0.3",
 		"font-awesome": "~4.3.0",
-		"clean-blog": "1.0.0"
+		"clean-blog": "1.0.0",
+		"autogrow-textarea": "*"
 	},
 	"install": {
 		"path": "src/main/resources/static/lib",
 		"sources": {
 			"bootstrap": "bower_components/bootstrap/dist/**",
-      		"jquery": "bower_components/jquery/**",
-      		"font-awesome": "bower_components/font-awesome/**",
-      		"clean-blog": "bower_components/clean-blog/**"
+			"jquery": "bower_components/jquery/**",
+			"font-awesome": "bower_components/font-awesome/**",
+			"clean-blog": "bower_components/clean-blog/**",
+			"autogrow-textarea": "bower_components/autogrow-textarea/**"
 		}
 	}
 }
