@@ -61,3 +61,7 @@
     2. Trello
     3. Git & Github(SourceTree)
 ```
+
+----
+## eXERD DB Modeling
+![alt text](https://github.com/Cho-Young-Il/springboot/blob/master/springboot001/dbmodel/tables.png)

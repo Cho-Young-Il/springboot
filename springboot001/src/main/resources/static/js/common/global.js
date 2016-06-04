@@ -16,11 +16,6 @@ var board = {
 	}
 };
 
-//var loginMember;
-//$.getJSON("/member/loginMember", function(data) {
-//	loginMember = data;
-//});
-
 function uploadFile(formData, url) {
 	var isNotERR = true;
 	$.ajax({
