@@ -58,6 +58,6 @@
 	<script src="/js/node-root.js"></script>
 	<script src="/js/common/global.js"></script>
 	<script src="/js/main/main.js"></script>
-	<script src="/js/member/regist.js"></script>
+	<script src="/js/member/modal/regist.js"></script>
 </body>
 </html>

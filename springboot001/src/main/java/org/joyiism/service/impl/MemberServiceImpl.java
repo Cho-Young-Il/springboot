@@ -4,7 +4,6 @@ import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
-import org.joyiism.controller.MemberController;
 import org.joyiism.dao.MemberDao;
 import org.joyiism.domain.Member;
 import org.joyiism.dto.Login;
@@ -14,14 +13,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-@Service
+@Service @Transactional
 public class MemberServiceImpl implements MemberService {
 	@Autowired private MemberDao memberDao;
-	private static final Logger logger = 
-			LoggerFactory.getLogger(MemberController.class);
-	private static final String NAME_REGEX = "[가-힣]{2,4}|[a-zA-Z]{3,20}";
-	private static final String EMAIL_REGEX = "([\\w-]+(?:\\.[\\w-]+)*)@"
+	private Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
+	private final String NAME_REGEX = "[가-힣]{2,4}|[a-zA-Z]{3,20}";
+	private final String EMAIL_REGEX = "([\\w-]+(?:\\.[\\w-]+)*)@"
 			+ "((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)";
 	
 	@Override
@@ -45,9 +44,8 @@ public class MemberServiceImpl implements MemberService {
 		logger.info("check member exist");
 		
 		Member member = memberDao.findByMid(login.getMid());
-		if(BCryptEncoder.matches(login.getMpwd(), member.getMpwd()) && member != null) {
-			return new Login(member.getMno(), member.getMid(), 
-				member.getMemail(), member.getMname(), member.getMphoto());
+		if(member != null && BCryptEncoder.matches(login.getMpwd(), member.getMpwd())) {
+			return new Login(member);
 		}
 		return null;
 	}
@@ -63,9 +61,8 @@ public class MemberServiceImpl implements MemberService {
 	public Login checkLoginBefore(String value) throws Exception {
 		logger.info("execute check member width sessionkey method : member service");
 	
-		Member member = memberDao.checkMemberWithSessionKey(value);
-		return new Login(member.getMno(), member.getMid(), 
-			member.getMemail(), member.getMname(), member.getMphoto());
+		Member member = memberDao.findByMsessionKeyAndMsessionLimitGreaterThan(value, new Date());
+		return new Login(member);
 	}
 	
 	@Override
@@ -80,9 +77,11 @@ public class MemberServiceImpl implements MemberService {
 		logger.info("execute member update profile service");
 		
 		Login loginMember = (Login)session.getAttribute("loginMember");
+		Member transac = memberDao.findByMid(loginMember.getMid());
+		
 		String memail = member.getMemail();
 		String mpwd = member.getMpwd();
-		String encodedPass = memberDao.findByMid(loginMember.getMid()).getMpwd();
+		String encodedPass = transac.getMpwd();
 		
 		if(mpwd.isEmpty() || !mpwd.equals(mpwdConfirm) ||
 				!BCryptEncoder.matches(mpwd, encodedPass)) {
@@ -90,7 +89,7 @@ public class MemberServiceImpl implements MemberService {
 		} else if(!memail.matches(EMAIL_REGEX)) {
 			throw new Exception("ERR_EMAIL");
 		} else {
-			memberDao.updateProfile(member.getMemail(), loginMember.getMno());
+			transac.setMemail(memail);
 			loginMember.setMemail(memail);
 			session.setAttribute("loginMember", loginMember);
 		}
@@ -101,13 +100,14 @@ public class MemberServiceImpl implements MemberService {
 		logger.info("execute member update password service");
 		
 		Login loginMember = (Login)session.getAttribute("loginMember");
-		String encodedPass = memberDao.findByMid(loginMember.getMid()).getMpwd();
+		Member transac = memberDao.findByMid(loginMember.getMid());
+		String encodedPass = transac.getMpwd();
 		
 		if(newPwd.isEmpty() || !newPwd.equals(cPwd) ||
 				!BCryptEncoder.matches(curPwd, encodedPass)) {
 			throw new Exception("ERR_PASS");
 		} else {
-			memberDao.updatePwd(BCryptEncoder.encode(newPwd), loginMember.getMno());
+			transac.setMpwd(BCryptEncoder.encode(newPwd));
 		}
 	}
 	

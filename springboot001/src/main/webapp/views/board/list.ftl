@@ -13,8 +13,9 @@
 <title>Springboot001</title>
 </head>
 <body>
-	<#include "../header.ftl">
 	
+	<#include "../header.ftl">
+	<div>${loginMember}</div>
 	<!-- Main Content -->
 	<div class="container">
 	    <div class="row">

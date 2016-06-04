@@ -45,21 +45,24 @@ $("#signup").submit(function() {
 	$.post("/member/add",
 		$("#signup").serialize()
 	, function(data) {
-		if(data == "ERR_PASS") {
-			alert("Passwords are not same");
-			$mpwd.val("").focus();
-			$mpwdConfirm.val("");
-		} else if(data == "ERR_NAME") {
-			alert("Cannot include null with namespace");
-			$mname.focus().select();
-		} else if(data == "ERR_EMAIL") {
-			alert("Check email address");
-			$memail.focus().select();
+		if(data.err) {
+			var errMsg = data.errMsg;
+			if(errMsg == "ERR_PASS") {
+				alert("Passwords are not same");
+				$mpwd.val("").focus();
+				$mpwdConfirm.val("");
+			} else if(errMsg == "ERR_NAME") {
+				alert("Cannot include null with namespace");
+				$mname.focus().select();
+			} else {
+				alert("Check email address");
+				$memail.focus().select();
+			} 
 		} else {
 			alert("Complete registration");
 			location.href = "/";
 		}
-	}).fail(function(e) {
+	}, "json").fail(function(e) {
 		alert("Fail registration");
 		$mid.val("").focus();
 		$mname.val("");

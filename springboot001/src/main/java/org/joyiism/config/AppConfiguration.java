@@ -85,6 +85,7 @@ public class AppConfiguration extends WebMvcConfigurerAdapter {
 		registry.addInterceptor(loginInterceptor())
 				.addPathPatterns("/member/login");
 		registry.addInterceptor(authInterceptor())
-				.addPathPatterns("/board/list");
+				.addPathPatterns("/member/**", "/board/**")
+				.excludePathPatterns("/member/login");
 	}
 }

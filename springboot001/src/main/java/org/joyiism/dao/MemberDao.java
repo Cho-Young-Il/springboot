@@ -17,19 +17,9 @@ public interface MemberDao extends JpaRepository<Member, Integer>{
 		+ " where mid = ?3", nativeQuery=true)
 	void keepLogin(String msessionKey, Date next, String mid);
 	
-	@Query(value="select * from member where msession_key = ?1"
-		+ " and msession_limit > now()", nativeQuery=true)
-	Member checkMemberWithSessionKey(String value);
+	Member findByMsessionKeyAndMsessionLimitGreaterThan(String msessionKey, Date now);
 	
 	@Modifying @Query(value="update member set mphoto = ?1"
 			+ " where mno = ?2", nativeQuery=true)
 	void updateImage(String savedDir, int mno);
-	
-	@Modifying @Query(value="update member set memail = ?1"
-			+ " where mno = ?2", nativeQuery=true)
-	void updateProfile(String memail, int mno);
-	
-	@Modifying @Query(value="update member set mpwd = ?1"
-			+ " where mno = ?2", nativeQuery=true)
-	void updatePwd(String newPwd, int mno);
 }

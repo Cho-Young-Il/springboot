@@ -1,5 +1,7 @@
 package org.joyiism.dto;
 
+import org.joyiism.domain.Member;
+
 public class Login {
 	private int mno;
 	private String mid;
@@ -9,13 +11,13 @@ public class Login {
 	private String mphoto;
 	private boolean useCookie;
 
-	public Login() {}	
-	public Login(int mno, String mid, String memail, String mname, String mphoto) {
-		this.mno = mno;
-		this.mid = mid;
-		this.memail = memail;
-		this.mname = mname;
-		this.mphoto = mphoto;
+	public Login() {}
+	public Login(Member member) {
+		this.mno = member.getMno();
+		this.mid = member.getMid();
+		this.memail = member.getMemail();
+		this.mname = member.getMname();
+		this.mphoto = member.getMphoto();
 	}
 
 	public int getMno() {

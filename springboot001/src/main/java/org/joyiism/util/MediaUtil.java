@@ -1,22 +1,17 @@
 package org.joyiism.util;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.http.MediaType;
-
-public class MediaUtil {
-	private static Map<String, MediaType> mediaMap;
+public enum MediaUtil {
+	JPEG("JPEG"), JPG("JPG"), PNG("PNG"), GIF("GIF");
 	
-	static {	
-		mediaMap = new HashMap<String, MediaType>();
-		mediaMap.put("JPEG", MediaType.IMAGE_JPEG);
-		mediaMap.put("JPG", MediaType.IMAGE_JPEG);
-		mediaMap.put("GIF", MediaType.IMAGE_GIF);
-		mediaMap.put("PNG", MediaType.IMAGE_PNG);
+	private String mediaType;
+	
+	MediaUtil(String mediaType) {
+		this.mediaType = mediaType;
 	}
 	
-	public static MediaType getMediaType(String type) {
-		return mediaMap.get(type.toUpperCase());
+	public boolean compareTo(String mediaType) {
+		if(this.mediaType.equals(mediaType)) 
+			return true;
+		return false;
 	}
 }

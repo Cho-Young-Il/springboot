@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 import org.joyiism.domain.Member;
 import org.joyiism.dto.Login;
 import org.joyiism.service.MemberService;
-import org.joyiism.util.BCryptEncoder;
 import org.joyiism.util.AttachfileUtil;
+import org.joyiism.util.BCryptEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +32,14 @@ public class MemberController {
 	private final int EXPIRY = 60 * 60 * 24 * 7;
 	private final String STATIC_ROOT = "src/main/resources/static";
 	private final String BASE_MPHOTO = "/images/base-user.png";
-	private static final Logger logger = 
-			LoggerFactory.getLogger(MemberController.class);
+	private Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	@ResponseBody
 	@RequestMapping(value="add", method=RequestMethod.POST)
-	public String regist(Member member, String mpwdConfirm) {
+	public Map<String, Object> regist(Member member, String mpwdConfirm) {
 		logger.info("execute member add controller");
 		
-		String ERR = null;
+		Map<String, Object> jsonData = new HashMap<>();
 		try {
 			member.setMpwd(BCryptEncoder.encode(member.getMpwd()));
 			member.setMphoto(BASE_MPHOTO);
@@ -48,16 +47,14 @@ public class MemberController {
 			memberService.add(member, mpwdConfirm);
 		} catch (Exception e) {
 			logger.error("error member add controller", e);
-			String exception = e.getMessage();
-			if("ERR_PASS".equals(exception)) {
-				ERR = "ERR_PASS";
-			} else if("ERR_NAME".equals(exception)) {
-				ERR = "ERR_NAME";
-			} else if("ERR_EMAIL".equals(exception)) {
-				ERR = "ERR_EMAIL";
+			String errMsg = e.getMessage();
+			jsonData.put("err", true);
+			if("ERR_PASS".equals(errMsg) || "ERR_NAME".equals(errMsg)
+					|| "ERR_EMAIL".equals(errMsg)) {
+				jsonData.put("errMsg", errMsg);
 			}
 		}
-		return ERR;
+		return jsonData;
 	}
 	
 	@ResponseBody
@@ -73,7 +70,6 @@ public class MemberController {
 			if(loginMember != null) {
 				logger.info("new login success");
 				session.setAttribute("loginMember", loginMember);
-				jsonData.put("url", "/board/list");
 
 				if(login.isUseCookie()) {
 					logger.info("remember me.");
@@ -88,6 +84,7 @@ public class MemberController {
 			}
 		} catch (Exception e) {
 			logger.error("error member login controller", e);
+			jsonData.put("err", true);
 		}
 		return jsonData;
 	}
@@ -127,22 +124,21 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping(value="updateProfile", method=RequestMethod.POST)
-	public String update(Member member, String mpwdConfirm, HttpSession session) {
+	public Map<String, Object> update(Member member, String mpwdConfirm, HttpSession session) {
 		logger.info("execute member update profile controller");
 		
-		String ERR = null;
+		Map<String, Object> jsonData = new HashMap<>();
 		try {
 			memberService.updateProfile(member, mpwdConfirm, session);
 		} catch (Exception e) {
 			logger.error("error member update profile controller", e);
-			String exception = e.getMessage();
-			if("ERR_PASS".equals(exception)) {
-				ERR = "ERR_PASS";
-			} else if("ERR_EMAIL".equals(exception)) {
-				ERR = "ERR_EMAIL";
+			String errMsg = e.getMessage();
+			jsonData.put("err", true);
+			if("ERR_PASS".equals(errMsg) || "ERR_EMAIL".equals(errMsg)) {
+				jsonData.put("errMsg", errMsg);
 			}
 		}
-		return ERR;
+		return jsonData;
 	}
 	
 	@ResponseBody
@@ -150,7 +146,7 @@ public class MemberController {
 	public String updateImage(MultipartFile file, HttpSession session) {
 		logger.info("execute member update image controller");
 		
-		String ERR = null;
+		String errMsg = null;
 		Login loginMember = (Login)session.getAttribute("loginMember");
 		String mphoto = loginMember.getMphoto();		
 		File path = new File(STATIC_ROOT + "/attachfile");
@@ -169,27 +165,28 @@ public class MemberController {
 			}
 		} catch (Exception e) {
 			logger.error("error memger update image", e);
-			ERR = e.getMessage();
+			errMsg = e.getMessage();
 		}
-		return ERR;
+		return errMsg;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="updatePwd", method=RequestMethod.POST)
-	public String updatePwd(String curPwd, String newPwd, String cPwd, HttpSession session) {
+	public Map<String, Object> updatePwd(String curPwd, String newPwd, String cPwd, HttpSession session) {
 		logger.info("execute member update password controller");
-		
-		String ERR = null;
+
+		Map<String, Object> jsonData = new HashMap<>();
 		try {
 			memberService.updatePwd(curPwd, newPwd, cPwd, session);
 		} catch (Exception e) {
 			logger.error("error member update password controller", e);
-			String exception = e.getMessage();
-			if("ERR_PASS".equals(exception)) {
-				ERR = "ERR_PASS";
+			String errMsg = e.getMessage();
+			jsonData.put("err", true);
+			if("ERR_PASS".equals(errMsg)) {
+				jsonData.put("errMsg", errMsg);
 			}
 		}
-		return ERR;
+		return jsonData;
 	}
 	
 	@ResponseBody
@@ -215,20 +212,21 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping(value="delete", method=RequestMethod.POST)
-	public String delete(String mpwd, String mpwdConfirm,
+	public Map<String, Object> delete(String mpwd, String mpwdConfirm,
 			HttpSession session, HttpServletResponse response) {
 		logger.info("execute member delete controller");
 		
-		String ERR = null;
+		Map<String, Object> jsonData = new HashMap<>();
 		try {
 			memberService.delete(mpwd, mpwdConfirm, session);
 		} catch (Exception e) {
 			logger.error("error member delete controller", e);
-			String exception = e.getMessage();
-			if("ERR_PASS".equals(exception)) {
-				ERR = "ERR_PASS";
+			jsonData.put("err", true);
+			String errMsg = e.getMessage();
+			if("ERR_PASS".equals(errMsg)) {
+				jsonData.put("errMsg", errMsg);
 			}
 		}
-		return ERR;
+		return jsonData;
 	}
 }

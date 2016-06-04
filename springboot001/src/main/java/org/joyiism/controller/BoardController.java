@@ -1,5 +1,7 @@
 package org.joyiism.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,8 @@ public class BoardController {
 			LoggerFactory.getLogger(BoardController.class);
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
-	public void list(Model model) {
+	public void list(HttpSession session, Model model) {
 		logger.info("execute board list controller");
+		model.addAttribute("loginMember", session.getAttribute("loginMember"));
 	}
 }

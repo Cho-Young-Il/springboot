@@ -16,13 +16,13 @@ var board = {
 	}
 };
 
-var loginMember;
-$.getJSON("/member/loginMember", function(data) {
-	loginMember = data;
-});
+//var loginMember;
+//$.getJSON("/member/loginMember", function(data) {
+//	loginMember = data;
+//});
 
 function uploadFile(formData, url) {
-	var isERR = false;
+	var isNotERR = true;
 	$.ajax({
 		url : url,
 		data : formData,
@@ -31,11 +31,11 @@ function uploadFile(formData, url) {
 		contentType : false,
 		type : "post",
 		success : function(data) {
-			if(data) {
-				alert("Error : " + data);
-				isERR = true;
+			if(data.Msg) {
+				alert("Error : " + data.errMsg);
+				isNotERR = false;
 			}
 		}
 	});
-	return isERR;
+	return isNotERR;
 }

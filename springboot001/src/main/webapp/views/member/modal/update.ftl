@@ -20,12 +20,12 @@
 					<ul class="list-table">
 						<li style="width: 70px; padding-left: 10px;">
 						<img class="img-circle img-bordered-primary"
-							id="profileImage" src="" 
+							id="profileImage" src="${loginMember.mphoto}" 
 							alt="" width="70px" height="70px">
 						</li>
 						<li class="text-left" style="padding-left: 30px;">
-							<h4 class="semibold ellipsis nm" id="profileMname"></h4>
-							<p class="text-muted nm" id="profileMid"></p>
+							<h4 class="semibold ellipsis nm" id="profileMname">${loginMember.mname}</h4>
+							<p class="text-muted nm" id="profileMid">${loginMember.mid}</p>
 						</li>
 						<li class="text-right">
 							<a class="btn btn-primary" id="profileImageEdit">Edit</a>
@@ -44,7 +44,7 @@
 						</span> 
 						<input size="60" maxlength="255" class="form-control"
 							placeholder="Email" required="required"
-							name="memail" id="memail" type="email">
+							name="memail" id="memail" type="email" value="${loginMember.memail}">
 					</div>
 					<div class="input-group">
 						<span class="input-group-addon">

@@ -11,11 +11,10 @@ $("#signin").submit(function() {
 	$.post("/member/login",
 		$("#signin").serialize()
 	, function(data) {
-		var url = data.url;
-		if(url) {
-			location.href = url;
+		if(!data.err) {
+			location.href = "/board/list";
 		} else {
-			alert("Login Fail.\nCheck ID or Password");
+			alert("Login Fail.\nCheck ID or Password");			
 		}
 	}, "json").fail(function(e) {
 		console.log(e);

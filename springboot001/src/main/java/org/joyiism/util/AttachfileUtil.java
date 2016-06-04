@@ -25,7 +25,7 @@ public class AttachfileUtil {
 		Map<String, String> retMap = new HashMap<>();
 		
 		String formatName = originalName.substring(originalName.lastIndexOf(".") + 1);		
-		if(MediaUtil.getMediaType(formatName) != null) {
+		if(isMediaType(formatName)) {
 			UUID uid = UUID.randomUUID();
 			
 			String savedDir = null;
@@ -50,7 +50,7 @@ public class AttachfileUtil {
 			FileCopyUtils.copy(fileData, target);
 			retMap.put("imagePath", savedDir);
 			
-			if(controller == "board") {
+			if("board".equals(controller)) {
 				retMap.put("thumbnailPath", makeThumbnail(
 						uploadPath, savedPath, savedName));
 			}
@@ -100,5 +100,13 @@ public class AttachfileUtil {
 		ImageIO.write(destImg, formatName.toUpperCase(), newFile);
 		
 		return thumbnailName.substring(uploadPath.length()).replace(File.separatorChar, '/');
+	}
+	
+	private static boolean isMediaType(String mediaType) {
+		for(MediaUtil mediaUtil : MediaUtil.values()) {
+			if(mediaUtil.compareTo(mediaType.toUpperCase())) 
+				return true;
+		}
+		return false;
 	}
 }
