@@ -15,8 +15,7 @@ import org.springframework.web.util.WebUtils;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter{
 	@Autowired private MemberService memberService;
-	private static final Logger logger =
-			LoggerFactory.getLogger(AuthInterceptor.class);
+	private final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, 

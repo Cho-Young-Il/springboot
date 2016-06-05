@@ -1,3 +1,10 @@
+.sticky {
+    position: fixed;
+    background: #EAEAEA;
+    opacity: 0.9;
+    top: 0;
+}
+
 .custom-button{
 	padding: 10px 20px;
 	color: #fff;

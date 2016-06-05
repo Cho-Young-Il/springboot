@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service @Transactional
 public class MemberServiceImpl implements MemberService {
 	@Autowired private MemberDao memberDao;
-	private Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
+	private final Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
 	private final String NAME_REGEX = "[가-힣]{2,4}|[a-zA-Z]{3,20}";
 	private final String EMAIL_REGEX = "([\\w-]+(?:\\.[\\w-]+)*)@"
 			+ "((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)";

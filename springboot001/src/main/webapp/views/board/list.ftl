@@ -16,6 +16,8 @@
 	
 	<#include "../header.ftl">
 	<div>${loginMember}</div>
+	sdfsfd
+	<hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
 	<!-- Main Content -->
 	<div class="container">
 	    <div class="row">
@@ -31,11 +33,10 @@
 	
 	<script src="/lib/jquery/jquery.min.js"></script>
 	<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
-	<script src="/lib/clean-blog/clean-blog.min.js"></script>
 	<script src="/lib/autogrow-textarea/jquery.autogrowtextarea.min.js"></script>
 	<script src="/js/common/jquery.typoshadow.js"></script>
 	<script src="/js/common/global.js"></script>
-	<script src="/js/board/list.js"></script>
+	<script src="/js/header.js"></script>
 	<script src="/js/member/modal/update.js"></script>
 	<script src="/js/board/modal/regist.js"></script>
 </body>

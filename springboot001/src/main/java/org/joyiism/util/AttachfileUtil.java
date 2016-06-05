@@ -16,9 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.FileCopyUtils;
 
 public class AttachfileUtil {
-	private static final String ROOT = "/attachfile";
-	private static final Logger logger = 
-			LoggerFactory.getLogger(AttachfileUtil.class);
+	private static final String UPLOAD_ROOT = "/attachfile";
+	private static final Logger logger = LoggerFactory.getLogger(AttachfileUtil.class);
 	
 	public static Map<String, String> uploadImageFile(String uploadPath, byte[] fileData, 
 			String controller, String originalName) throws Exception {
@@ -33,17 +32,17 @@ public class AttachfileUtil {
 			String savedPath = null;
 			File target = null;
 			
-			if(!originalName.startsWith(ROOT)) {
+			if(!originalName.startsWith(UPLOAD_ROOT)) {
 				logger.info("image file upload");
 				
 				savedName = uid.toString() + "_" + originalName;
 				savedPath = calcPath(uploadPath);
 				target = new File(uploadPath + savedPath, savedName);
-				savedDir = ROOT + savedPath + "/" + savedName;
+				savedDir = UPLOAD_ROOT + savedPath + "/" + savedName;
 			} else {
 				savedDir = originalName;
 				target = new File(uploadPath +
-					savedDir.substring(ROOT.length(), originalName.lastIndexOf("/")),
+					savedDir.substring(UPLOAD_ROOT.length(), originalName.lastIndexOf("/")),
 					savedDir.substring(originalName.lastIndexOf("/") + 1));
 			}
 			

@@ -32,7 +32,7 @@ public class MemberController {
 	private final int EXPIRY = 60 * 60 * 24 * 7;
 	private final String STATIC_ROOT = "src/main/resources/static";
 	private final String BASE_MPHOTO = "/images/base-user.png";
-	private Logger logger = LoggerFactory.getLogger(MemberController.class);
+	private final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	@ResponseBody
 	@RequestMapping(value="add", method=RequestMethod.POST)
@@ -142,7 +142,7 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="updateImage", method=RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	@RequestMapping(value="updateImage", method=RequestMethod.POST)
 	public String updateImage(MultipartFile file, HttpSession session) {
 		logger.info("execute member update image controller");
 		

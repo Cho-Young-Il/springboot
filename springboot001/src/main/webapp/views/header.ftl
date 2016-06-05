@@ -45,7 +45,7 @@
                     <span class="subheading" style="font-weight: bold;">Spring Boot 001 Simple Project</span>
                     <span class="subheading" style="font-weight: bold;">Member and Board Management System</span>
 	            	<hr class="small"><br/>
-	            	<button id="newPost" class="custom-button">
+	            	<button id="newPostBtn" class="custom-button" data-toggle="modal" data-target="#newPostModal">
 	            		<i class="fa fa-fw fa-file-text-o"></i>NEW POST
 	            	</button>
                 </div>

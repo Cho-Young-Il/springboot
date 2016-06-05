@@ -34,14 +34,17 @@ $("#profileModal #profileImageFile").change(function(event) {
 	event.preventDefault();
 	event.stopPropagation();
 	var imageFile = event.target.files[0];
-	var strExt = event.target.value.split('.').pop().toLowerCase();
+	var imageFileName = imageFile.name;
+	var strExt = imageFileName
+					.substring(imageFileName.lastIndexOf(".") + 1, imageFileName.length)
+					.toLowerCase();
 	if($.inArray(strExt, ["jpg", "jpeg", "png", "gif"]) == -1) {
 		alert("Only image file can be uploaded");
 	} else if(imageFile.size > 10485760) {
 		alert("Image file size must be less than 10MB");
 	} else {
 		var formData = new FormData();
-		formData.append('file', imageFile);
+		formData.append("file", imageFile);
 		
 		if(uploadFile(formData, "/member/updateImage")) {
 			var reader = new FileReader();
