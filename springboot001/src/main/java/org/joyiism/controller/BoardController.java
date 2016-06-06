@@ -1,12 +1,15 @@
 package org.joyiism.controller;
 
-import java.util.Iterator;
-
 import javax.servlet.http.HttpSession;
 
+import org.joyiism.domain.Board;
+import org.joyiism.service.AttachfileService;
+import org.joyiism.service.BoardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +19,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 @Controller("BoardController")
 @RequestMapping("/board/*")
 public class BoardController {
+	@Autowired private BoardService boardService;
+	@Autowired private AttachfileService attachfileService;
+	private final String STATIC_ROOT = "src/main/resources/static";
 	private final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
@@ -24,32 +30,19 @@ public class BoardController {
 		model.addAttribute("loginMember", session.getAttribute("loginMember"));
 	}
 	
-	@ResponseBody
+	@ResponseBody @Transactional
 	@RequestMapping(value="regist", method=RequestMethod.POST)
 	public String add(MultipartHttpServletRequest mRequest) {
 		logger.info("execute board regist controller");
 		
-		String btitle = mRequest.getParameter("btitle");
-		String bcontent = mRequest.getParameter("bcontent");
-		int mno = Integer.parseInt(mRequest.getParameter("mno"));
-		
-		logger.info("btitle : " + btitle);
-		logger.info("bcontent : " + bcontent);
-		logger.info("mno : " + mno);
-		
-		//List<MultipartFile> files = mRequest.getParameter("attachFiles");
-		
-		
-		Iterator<String> iterator = mRequest.getFileNames();
-		int size = 0;
-		while(iterator.hasNext()) {
-			String fileName = iterator.next();
-			logger.info("fileName : " + fileName);
-			size++;
-			logger.info("1");
+		String errMsg = null;
+		try {
+			Board board = boardService.regist(mRequest);
+			attachfileService.regist(STATIC_ROOT + "/attachfile", board, mRequest);
+		} catch (Exception e) {
+			logger.error("error board regist", e);
+			errMsg = e.getMessage();
 		}
-		logger.info("fileCnt : " + size);
-		
-		return null;
+		return errMsg;
 	}
 }

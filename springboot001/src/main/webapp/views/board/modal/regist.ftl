@@ -33,7 +33,12 @@
 							<h6 class="pull-right" id="cntMsg" style="font-weight: 700; color: #31708f;">200 remaining</h6>
 						</div>
 					</div>
-					<div id="mnoHidden" style="display: none;">${loginMember.mno}</div>
+					
+					<input type="hidden" id="mno" style="display :none;" value="${loginMember.mno}">
+					<input type="hidden" id="bgroup" style="display :none;" value="-1">
+					<input type="hidden" id="bgroupSeq" style="display :none;" value="1">
+					<input type="hidden" id="bdepth" style="display :none;" value="0">
+					<input type="hidden" id="isReply" style="display :none;" value="false">
 					<input id="attachFiles" type="file" multiple="multiple" style="display: none;">
 					<button id="searchImage" class="btn btn-block btn-danger">
 						<i class="fa fa-fw fa-file-picture-o"></i>SEARCH IMAGE

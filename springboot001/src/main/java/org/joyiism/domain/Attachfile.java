@@ -35,8 +35,7 @@ public class Attachfile {
 	private Board board;
 	
 	public Attachfile() {}
-	public Attachfile(int fno, String foriName, String frealName, String fsavedDir, String fthumbDir, Board board) {
-		this.fno = fno;
+	public Attachfile(String foriName, String frealName, String fsavedDir, String fthumbDir, Board board) {
 		this.foriName = foriName;
 		this.frealName = frealName;
 		this.fsavedDir = fsavedDir;

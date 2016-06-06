@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public interface MemberDao extends JpaRepository<Member, Integer>{
+	Member findByMno(int mno);
 	Member findByMid(String mid);
 	
 	@Modifying @Query(value="update member"

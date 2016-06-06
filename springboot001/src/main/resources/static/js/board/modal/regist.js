@@ -1,8 +1,14 @@
 /*board regist modal click init input tag*/
 $("#newPostBtn").click(function() {
-	$("#newPostModal input").val("");
+	$("#newPostModal input#btitle").val("");
+	$("#newPostModal input#attachFiles").val("");
 	$("#newPostModal textarea").val("");
+	$("#newPostModal #attachFiles").val("");
+	$("#newPostModal #attachFileThumbDiv").html("");
 	$("#newPostModal #cntMsg").html("200 remaining");
+	attachFiles = [];
+	attachFileIndex = 0;
+	attachFileCnt = 0;
 });
 
 /* check exceeding 200 characters */
@@ -148,13 +154,17 @@ $("#newPostModal #boardAddForm").submit(function() {
 	var formData = new FormData();
 	formData.append("btitle", $("#newPostModal #boardAddForm #btitle").val());
 	formData.append("bcontent", $("#newPostModal #boardAddForm #bcontent").val());
-	formData.append("mno", $("#newPostModal #boardAddForm #mnoHidden").text());
+	formData.append("mno", $("#newPostModal #boardAddForm #mno").val());
+	formData.append("bgroup", $("#newPostModal #boardAddForm #bgroup").val());
+	formData.append("bgroupSeq", $("#newPostModal #boardAddForm #bgroupSeq").val());
+	formData.append("bgroupSeq", $("#newPostModal #boardAddForm #bdepth").val());
+	formData.append("isReply", $("#newPostModal #boardAddForm #isReply").val());
 	
 	Array.prototype.sort.call(attachFiles);
 	for(var i = 0; i < attachFileCnt; i++) {
 		formData.append(i, attachFiles[i]);
 	}
-	
+	console.log(11);
 	if(uploadFile(formData, "/board/regist")) {
 		alert("Success regist new post");
 		location.href = "/board/list";

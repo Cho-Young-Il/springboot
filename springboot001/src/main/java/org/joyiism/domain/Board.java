@@ -56,19 +56,14 @@ public class Board {
 	private List<Attachfile> files;
 
 	public Board() {}
-	public Board(int bno, int bgroup, int bgroupSeq, int bdepth, String btitle, String bcontent, Date bregDate,
-			Date bmodDate, Member member, List<Comment> comments, List<Attachfile> files) {
-		this.bno = bno;
-		this.bgroup = bgroup;
+	public Board(int bgroupSeq, int bdepth, String btitle,
+			String bcontent, Member member, Date bmodDate) {
 		this.bgroupSeq = bgroupSeq;
 		this.bdepth = bdepth;
 		this.btitle = btitle;
 		this.bcontent = bcontent;
-		this.bregDate = bregDate;
-		this.bmodDate = bmodDate;
 		this.member = member;
-		this.comments = comments;
-		this.files = files;
+		this.bmodDate = bmodDate;
 	}
 	
 	public int getBno() {

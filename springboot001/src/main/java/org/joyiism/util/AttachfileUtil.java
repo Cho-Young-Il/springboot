@@ -36,6 +36,9 @@ public class AttachfileUtil {
 				logger.info("image file upload");
 				
 				savedName = uid.toString() + "_" + originalName;
+				
+				retMap.put("frealName", savedName);
+				
 				savedPath = calcPath(uploadPath);
 				target = new File(uploadPath + savedPath, savedName);
 				savedDir = UPLOAD_ROOT + savedPath + "/" + savedName;
@@ -50,7 +53,7 @@ public class AttachfileUtil {
 			retMap.put("imagePath", savedDir);
 			
 			if("board".equals(controller)) {
-				retMap.put("thumbnailPath", makeThumbnail(
+				retMap.put("thumbnailPath", UPLOAD_ROOT + makeThumbnail(
 						uploadPath, savedPath, savedName));
 			}
 		} else {
@@ -93,7 +96,7 @@ public class AttachfileUtil {
 		BufferedImage sourceImg = ImageIO.read(new File(uploadPath + path, fileName));
 		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 100);
 		
-		String thumbnailName = uploadPath + path + File.separator + fileName + "_thumb";
+		String thumbnailName = uploadPath + path + File.separator + "thumb_" + fileName;
 		File newFile = new File(thumbnailName);
 		String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
 		ImageIO.write(destImg, formatName.toUpperCase(), newFile);
