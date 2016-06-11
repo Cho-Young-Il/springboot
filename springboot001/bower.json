@@ -15,18 +15,22 @@
 	"dependencies": {
 		"bootstrap": "~3.3.4",
 		"jquery": "2.0.3",
+		"jquery-ui": "1.10.4",
 		"font-awesome": "~4.3.0",
 		"clean-blog": "1.0.0",
-		"autogrow-textarea": "*"
+		"autogrow-textarea": "*",
+		"jquery-smooth-scroll": "*"
 	},
 	"install": {
 		"path": "src/main/resources/static/lib",
 		"sources": {
 			"bootstrap": "bower_components/bootstrap/dist/**",
 			"jquery": "bower_components/jquery/**",
+			"jquery-ui": "bower_components/jquery-ui/**",
 			"font-awesome": "bower_components/font-awesome/**",
 			"clean-blog": "bower_components/clean-blog/**",
-			"autogrow-textarea": "bower_components/autogrow-textarea/**"
+			"autogrow-textarea": "bower_components/autogrow-textarea/**",
+			"jquery-smooth-scroll": "bower_components/jquery-smooth-scroll/**"
 		}
 	}
 }
