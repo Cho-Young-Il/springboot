@@ -2,7 +2,7 @@ package org.joyiism.dto;
 
 import org.joyiism.domain.Member;
 
-public class Login {
+public class LoginDTO {
 	private int mno;
 	private String mid;
 	private String memail;
@@ -11,8 +11,8 @@ public class Login {
 	private String mphoto;
 	private boolean useCookie;
 
-	public Login() {}
-	public Login(Member member) {
+	public LoginDTO() {}
+	public LoginDTO(Member member) {
 		this.mno = member.getMno();
 		this.mid = member.getMid();
 		this.memail = member.getMemail();

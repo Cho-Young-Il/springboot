@@ -17,6 +17,8 @@
 	
 <#include "../header.ftl">
 
+${boardList}
+${loginMember}
 <!-- List Contents -->
 <div class="container board-list">
 <section class="content">
@@ -30,18 +32,18 @@
 							<div class="input-group">
 				                <div class="input-group-btn search-panel">
 				                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-				                    	<span id="searchParam">Filter by</span> <span class="caret"></span>
+				                    	<span id="searchType">Filter by</span> <span class="caret"></span>
 				                    </button>
 				                    <ul class="dropdown-menu" role="menu">
-				                      <li><a class="search-param">Title</a></li>
-				                      <li><a class="search-param">Content</a></li>
-				                      <li><a class="search-param">Writer</a></li>
+				                      <li><a class="search-type">Title</a></li>
+				                      <li><a class="search-type">Content</a></li>
+				                      <li><a class="search-type">Writer</a></li>
 				                      <li class="divider"></li>
-				                      <li><a class="search-param">Anything</a></li>
+				                      <li><a class="search-type">Anything</a></li>
 				                    </ul>
 				                </div>
-				                <input type="hidden" name="searchParam" value="anything" id="searchParam">
-				                <input type="text" class="form-control" name="x" placeholder="Search">
+				                <input type="hidden" name="type" value="anything">
+				                <input type="text" class="form-control" name="keyword" placeholder="Search">
 				                <span class="input-group-btn">
 				                    <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search"></span></button>
 				                </span>

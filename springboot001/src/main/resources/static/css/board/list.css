@@ -17,3 +17,6 @@
 .board-list .btn {
 	padding: 7.5px 10px;
 }
+.board-list a {
+	cursor: pointer;
+}

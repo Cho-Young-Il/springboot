@@ -24,11 +24,11 @@ public class BoardServiceImpl implements BoardService{
 	public Board regist(MultipartHttpServletRequest mRequest) throws Exception {
 		logger.info("execute board regist service");
 		
-		final int B_GROUP_SEQ = 1, B_DEPTH = 0;
+		final int BGROUP_SEQ = 1, BDEPTH = 0;
 		
 		Member member = memberDao.findByMno(
 				Integer.parseInt(mRequest.getParameter("mno")));
-		Board board = new Board(B_GROUP_SEQ, B_DEPTH, mRequest.getParameter("btitle"),
+		Board board = new Board(BGROUP_SEQ, BDEPTH, mRequest.getParameter("btitle"),
 				mRequest.getParameter("bcontent"), member, new Date());
 		boardDao.save(board);
 		
