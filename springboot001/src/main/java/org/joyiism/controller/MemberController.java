@@ -82,6 +82,8 @@ public class MemberController {
 					loginCookie.setMaxAge(EXPIRY);
 					response.addCookie(loginCookie);	
 				}
+			} else {
+				jsonData.put("err", true);
 			}
 		} catch (Exception e) {
 			logger.error("error member login controller", e);

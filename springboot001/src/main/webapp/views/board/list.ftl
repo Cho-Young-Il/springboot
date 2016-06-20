@@ -17,7 +17,6 @@
 	
 <#include "../header.ftl">
 
-${boardList}
 ${loginMember}
 <!-- List Contents -->
 <div class="container board-list">
