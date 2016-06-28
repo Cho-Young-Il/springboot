@@ -12,4 +12,4 @@ gradle-wrapper.properties
 /bower_components/
 /src/main/resources/static/lib/
 /src/main/resources/static/attachfile/**/
-/src/main/webapp/views/test/*
+/src/main/resources/templates/test/*
