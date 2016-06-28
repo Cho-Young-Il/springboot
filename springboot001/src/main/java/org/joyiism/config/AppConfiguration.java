@@ -32,7 +32,7 @@ public class AppConfiguration extends WebMvcConfigurerAdapter {
 	@Bean(name="freemarkerConfig")
 	public FreeMarkerConfigurer freemarkerConfig() {
 		FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
-		configurer.setTemplateLoaderPath("/views/");
+		configurer.setTemplateLoaderPath("classpath:/static/templates/");
 		Map<String, Object> map = new HashMap<>();
 		map.put("xml_escape", new XmlEscape());
 		configurer.setFreemarkerVariables(map);
@@ -41,7 +41,7 @@ public class AppConfiguration extends WebMvcConfigurerAdapter {
 	@Bean
 	public ViewResolver getViewResolver() {
 	    InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-	    resolver.setPrefix("/views/");
+	    resolver.setPrefix("/templates/");
 	    resolver.setSuffix(".ftl");
 	    return resolver;
 	}
