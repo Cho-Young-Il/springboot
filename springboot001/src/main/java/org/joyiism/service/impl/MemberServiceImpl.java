@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.joyiism.dao.MemberDao;
 import org.joyiism.domain.Member;
-import org.joyiism.dto.LoginDTO;
+import org.joyiism.dto.MemberDTO;
 import org.joyiism.service.MemberService;
 import org.joyiism.util.BCryptEncoder;
 import org.slf4j.Logger;
@@ -40,12 +40,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public LoginDTO exist(LoginDTO login) throws Exception {
+	public MemberDTO exist(MemberDTO login) throws Exception {
 		logger.info("check member exist");
 		
 		Member member = memberDao.findByMid(login.getMid());
 		if(member != null && BCryptEncoder.matches(login.getMpwd(), member.getMpwd())) {
-			return new LoginDTO(member);
+			return new MemberDTO(member);
 		}
 		return null;
 	}
@@ -58,11 +58,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public LoginDTO checkLoginBefore(String value) throws Exception {
+	public MemberDTO checkLoginBefore(String value) throws Exception {
 		logger.info("execute check member width sessionkey method : member service");
 	
 		Member member = memberDao.findByMsessionKeyAndMsessionLimitGreaterThan(value, new Date());
-		return new LoginDTO(member);
+		return new MemberDTO(member);
 	}
 	
 	@Override
@@ -76,7 +76,7 @@ public class MemberServiceImpl implements MemberService {
 	public void updateProfile(Member member, String mpwdConfirm, HttpSession session) throws Exception {
 		logger.info("execute member update profile service");
 		
-		LoginDTO loginMember = (LoginDTO)session.getAttribute("loginMember");
+		MemberDTO loginMember = (MemberDTO)session.getAttribute("loginMember");
 		Member transac = memberDao.findByMid(loginMember.getMid());
 		
 		String memail = member.getMemail();
@@ -99,7 +99,7 @@ public class MemberServiceImpl implements MemberService {
 	public void updatePwd(String curPwd, String newPwd, String cPwd, HttpSession session) throws Exception {
 		logger.info("execute member update password service");
 		
-		LoginDTO loginMember = (LoginDTO)session.getAttribute("loginMember");
+		MemberDTO loginMember = (MemberDTO)session.getAttribute("loginMember");
 		Member transac = memberDao.findByMid(loginMember.getMid());
 		String encodedPass = transac.getMpwd();
 		
@@ -115,7 +115,7 @@ public class MemberServiceImpl implements MemberService {
 	public void delete(String mpwd, String mpwdConfirm, HttpSession session) throws Exception {
 		logger.info("execute member delete service");
 		
-		LoginDTO loginMember = (LoginDTO)session.getAttribute("loginMember");
+		MemberDTO loginMember = (MemberDTO)session.getAttribute("loginMember");
 		String encodedPass = memberDao.findByMid(loginMember.getMid()).getMpwd();
 		
 		if(mpwd.isEmpty() || !mpwd.equals(mpwdConfirm) ||
@@ -127,8 +127,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public LoginDTO getLoginMember(HttpSession session) throws Exception {
-		return new LoginDTO(memberDao.findByMno(
-			((LoginDTO)session.getAttribute("loginMember")).getMno()));
+	public MemberDTO getLoginMember(HttpSession session) throws Exception {
+		return new MemberDTO(memberDao.findByMno(
+			((MemberDTO)session.getAttribute("loginMember")).getMno()));
 	}
 }

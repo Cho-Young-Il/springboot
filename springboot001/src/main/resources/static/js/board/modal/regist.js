@@ -92,12 +92,9 @@ function imageUtil(files) {
 	for(var i = 0; i < filesLen; i++) {
 		var imageFile = files[i];
 		var imageFileName = imageFile.name;
-		var strExt = imageFileName
-						.substring(imageFileName.lastIndexOf(".") + 1, imageFileName.length)
-						.toLowerCase();
-		if(imageFile.size <= 10485760 
-			&& $.inArray(strExt, ["jpg", "jpeg", "png", "gif"]) != -1) {
-			
+		var imageRegex = /\.(jpeg|jpg|gif|png)$/i;
+		
+		if(imageFile.size <= 10485760 && imageRegex.test(imageFileName)) {
 			var reader = new FileReader();
 			reader.readAsDataURL(imageFile);
 			reader.onload = function(event) {
@@ -167,7 +164,7 @@ $("#newPostModal #boardAddForm").submit(function() {
 	console.log(11);
 	if(uploadFile(formData, "/board/regist")) {
 		alert("Success regist new post");
-		location.href = "/board/list";
+		location.href = "/board";
 	}
 	return false;
 });

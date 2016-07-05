@@ -35,10 +35,9 @@ $("#profileModal #profileImageFile").change(function(event) {
 	event.stopPropagation();
 	var imageFile = event.target.files[0];
 	var imageFileName = imageFile.name;
-	var strExt = imageFileName
-					.substring(imageFileName.lastIndexOf(".") + 1, imageFileName.length)
-					.toLowerCase();
-	if($.inArray(strExt, ["jpg", "jpeg", "png", "gif"]) == -1) {
+	var imageRegex = /\.(jpeg|jpg|gif|png)$/i;
+	
+	if(!imageRegex.test(imageFileName)) {
 		alert("Only image file can be uploaded");
 	} else if(imageFile.size > 10485760) {
 		alert("Image file size must be less than 10MB");

@@ -1,8 +1,11 @@
 package org.joyiism.service;
 
-import org.joyiism.domain.Board;
+import java.util.Map;
+
+import org.joyiism.domain.PageMaker;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public interface BoardService {
-	Board regist(MultipartHttpServletRequest mRequest) throws Exception;
+	Map<String, Object> list(PageMaker pageMaker) throws Exception;
+	void regist(MultipartHttpServletRequest mRequest) throws Exception;
 }

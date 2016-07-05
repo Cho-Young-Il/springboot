@@ -2,8 +2,7 @@
 *.project
 *.settings
 .gradle
-gradle-wrapper.jar
-gradle-wrapper.properties
+/gradle
 /bin
 /build
 
