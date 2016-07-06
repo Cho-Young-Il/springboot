@@ -13,6 +13,12 @@ var board = {
 			passDivIsDisplay : false,
 			baseUserIcon : "/images/base-user.png"
 		}
+	},
+	pageable : {
+		pageNo : 1,
+		size : 20,
+		searchType : undefined,
+		searchKeyword : undefined
 	}
 };
 

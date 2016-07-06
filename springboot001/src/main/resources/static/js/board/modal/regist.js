@@ -164,7 +164,8 @@ $("#newPostModal #boardAddForm").submit(function() {
 	console.log(11);
 	if(uploadFile(formData, "/board/regist")) {
 		alert("Success regist new post");
-		location.href = "/board";
+		$("#newPostModal button.close").trigger("click");
+		getList();
 	}
 	return false;
 });

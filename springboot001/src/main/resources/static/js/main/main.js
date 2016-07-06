@@ -12,7 +12,7 @@ $("#signin").submit(function() {
 		$("#signin").serialize()
 	, function(data) {
 		if(!data.err) {
-			location.href = "/board/list";
+			location.href = "/board";
 		} else {
 			alert("Login Fail.\nCheck ID or Password");			
 		}

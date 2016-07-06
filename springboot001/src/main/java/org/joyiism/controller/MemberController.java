@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.joyiism.domain.Member;
-import org.joyiism.dto.LoginDTO;
+import org.joyiism.dto.MemberDTO;
 import org.joyiism.service.MemberService;
 import org.joyiism.util.AttachfileUtil;
 import org.joyiism.util.BCryptEncoder;
@@ -60,13 +60,13 @@ public class MemberController {
 	
 	@ResponseBody @Transactional
 	@RequestMapping(value="login", method=RequestMethod.POST)
-	public Map<String, Object> login(LoginDTO login, HttpSession session,
+	public Map<String, Object> login(MemberDTO login, HttpSession session,
 			HttpServletResponse response) {
 		logger.info("execute member login controller");
 	
 		Map<String, Object> jsonData = new HashMap<>();
 		try {
-			LoginDTO loginMember = memberService.exist(login);
+			MemberDTO loginMember = memberService.exist(login);
 			
 			if(loginMember != null) {
 				logger.info("new login success");
@@ -98,7 +98,7 @@ public class MemberController {
 		logger.info("execute logout controller");
 	
 		try {
-			LoginDTO loginMember = (LoginDTO)session.getAttribute("loginMember");
+			MemberDTO loginMember = (MemberDTO)session.getAttribute("loginMember");
 			if(loginMember != null) {
 				session.removeAttribute("loginMember");
 				session.invalidate();
@@ -115,14 +115,6 @@ public class MemberController {
 		} catch (Exception e) {
 			logger.error("error logout controller", e);
 		}
-	}
-	
-	@ResponseBody
-	@RequestMapping(value="loginMember", method=RequestMethod.GET)
-	public LoginDTO getSession(HttpSession session) {
-		logger.info("execute get session controller");
-	
-		return (LoginDTO)session.getAttribute("loginMember");
 	}
 	
 	@ResponseBody
@@ -150,7 +142,7 @@ public class MemberController {
 		logger.info("execute member update image controller");
 		
 		String errMsg = null;
-		LoginDTO loginMember = (LoginDTO)session.getAttribute("loginMember");
+		MemberDTO loginMember = (MemberDTO)session.getAttribute("loginMember");
 		String mphoto = loginMember.getMphoto();		
 		File path = new File(STATIC_ROOT + "/attachfile");
 
@@ -198,7 +190,7 @@ public class MemberController {
 		logger.info("execute member delete image controller");
 		
 		try {
-			LoginDTO loginMember = (LoginDTO)session.getAttribute("loginMember");
+			MemberDTO loginMember = (MemberDTO)session.getAttribute("loginMember");
 			String mphoto = loginMember.getMphoto();
 			
 			if(!mphoto.equals(BASE_MPHOTO)) {

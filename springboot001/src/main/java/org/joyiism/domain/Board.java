@@ -21,7 +21,7 @@ public class Board {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "bno")
 	private int bno;
-	
+
 	@Column(name = "bgroup")
 	private int bgroup;
 	
@@ -137,6 +137,6 @@ public class Board {
 	public String toString() {
 		return "Board [bno=" + bno + ", bgroup=" + bgroup + ", bgroupSeq=" + bgroupSeq + ", bdepth=" + bdepth
 				+ ", btitle=" + btitle + ", bcontent=" + bcontent + ", bregDate=" + bregDate + ", bmodDate=" + bmodDate
-				+ ", member=" + member + ", comments=" + comments + ", files=" + files + "]";
+				+ "member" + member + "]";
 	}
 }

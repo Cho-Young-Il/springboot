@@ -156,6 +156,6 @@ public class Member {
 	public String toString() {
 		return "Member [mno=" + mno + ", mid=" + mid + ", memail=" + memail + ", mpwd=" + mpwd + ", mname=" + mname
 				+ ", mphoto=" + mphoto + ", msessionKey=" + msessionKey + ", mregDate=" + mregDate + ", mmodDate="
-				+ mmodDate + ", msessionLimit=" + msessionLimit + ", boards=" + boards + ", comments=" + comments + "]";
+				+ mmodDate + ", msessionLimit=" + msessionLimit + "]";
 	}
 }

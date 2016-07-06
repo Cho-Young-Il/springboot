@@ -2,11 +2,13 @@ package org.joyiism.service.impl;
 
 import java.io.File;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 import org.joyiism.dao.AttachfileDao;
 import org.joyiism.dao.BoardDao;
+import org.joyiism.dao.BoardDaoCustom;
 import org.joyiism.dao.MemberDao;
 import org.joyiism.domain.Attachfile;
 import org.joyiism.domain.Board;
@@ -25,13 +27,40 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 @Service @Transactional
 public class BoardServiceImpl implements BoardService{
 	@Autowired private BoardDao boardDao;
+	@Autowired private BoardDaoCustom BoardRepository;
 	@Autowired private MemberDao memberDao;
 	@Autowired private AttachfileDao attachfileDao;
 	private final Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
 	
 	@Override
 	public Map<String, Object> list(PageMaker pageMaker) throws Exception {
-		return null;
+		logger.info("execute board list service");
+		
+		final int PAGENATION_UNIT = 5;
+		final int HOWMANY = pageMaker.getSize();
+		
+		Map<String, Object> jsonData = new HashMap<>();
+		
+		int pageNo = pageMaker.getPageNo();
+		int start = (pageNo - 1) * HOWMANY;
+		int totalCount = (int)boardDao.count();
+		int lastPage = (totalCount % HOWMANY == 0) ? 
+				totalCount / HOWMANY : totalCount / HOWMANY + 1;
+		int currentTab = (pageNo - 1) / PAGENATION_UNIT + 1;
+		int startPage = (currentTab - 1) * PAGENATION_UNIT + 1;
+		int endPage = (currentTab * PAGENATION_UNIT > lastPage) ?
+				lastPage : currentTab * PAGENATION_UNIT;
+		
+		pageMaker.setTotalCount(totalCount);
+		pageMaker.setLastPage(lastPage);
+		pageMaker.setCurrentTab(currentTab);
+		pageMaker.setStartPage(startPage);
+		pageMaker.setEndPage(endPage);
+		
+		jsonData.put("pageMaker", pageMaker);
+		jsonData.put("boardList", BoardRepository.boardList(start, pageMaker));
+		
+		return jsonData;
 	}
 	
 	@Override

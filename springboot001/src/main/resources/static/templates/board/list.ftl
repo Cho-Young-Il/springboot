@@ -17,7 +17,6 @@
 	
 <#include "../header.ftl">
 
-${loginMember}
 <!-- List Contents -->
 <div class="container board-list">
 <section class="content">
@@ -41,168 +40,15 @@ ${loginMember}
 				                      <li><a class="search-type">Anything</a></li>
 				                    </ul>
 				                </div>
-				                <input type="hidden" name="type" value="anything">
 				                <input type="text" class="form-control" name="keyword" placeholder="Search">
 				                <span class="input-group-btn">
-				                    <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search"></span></button>
+				                    <button class="btn btn-primary" id="searchBtn" type="button"><span class="glyphicon glyphicon-search"></span></button>
 				                </span>
 				            </div>
 						</div><br>
 						<div class="col-md-12"><hr>
-							<ul class="list-group fa-padding" style="word-break: break-all;">
-								<li class="list-group-item" data-toggle="modal" data-target="#issue">
-									<div class="media">
-										<i class="fa fa-file-o pull-left"></i><span class="number pull-right"># 13698</span>
-										<div class="media-body">
-											<div class="btitle">Add drag and drop config import closes</div>
-											<p class="info">
-												Written by jwilliams
-												<strong> /</strong>
-												<i class="fa fa-fw fa-clock-o"></i>16-05-07 11:11
-												<strong> /</strong>
-												<i class="fa fa-comments"></i> 2 comments
-											</p>
-										</div>
-									</div>
-								</li>
-								<li class="list-group-item" data-toggle="modal" data-target="#issue">
-									<div class="media">
-										<i class="pull-left">&nbsp;&nbsp;</i>
-										<i class="fa fa-code-fork pull-left"></i>
-										<span class="number pull-right"># 13697</span>
-										<div class="media-body">
-											<div class="label label-primary">ㄴREPLY</div><br>
-											<div class="btitle">Document that Helvetica Neue can cause problems on Windows</div>
-											<p class="info">
-												Written by jwilliams
-												<strong> /</strong>
-												<i class="fa fa-fw fa-clock-o"></i>16-05-07 11:11
-												<strong> /</strong>
-												<i class="fa fa-comments"></i> 2 comments
-											</p>
-										</div>
-									</div>
-								</li>
-								<li class="list-group-item" data-toggle="modal" data-target="#issue">
-									<div class="media">
-										<i class="pull-left">&nbsp;&nbsp;</i>
-										<i class="pull-left">&nbsp;&nbsp;</i>
-										<i class="fa fa-code-fork pull-left"></i>
-										<span class="number pull-right"># 13697</span>
-										<div class="media-body">
-											<div class="label label-primary">ㄴREPLY</div><br>
-											<div class="btitle">Document that Helvetica Neue can cause problems on Windows</div>
-											<p class="info">
-												Written by jwilliams
-												<strong> /</strong>
-												<i class="fa fa-fw fa-clock-o"></i>16-05-07 11:11
-												<strong> /</strong>
-												<i class="fa fa-comments"></i> 2 comments
-											</p>
-										</div>
-									</div>
-								</li>
-								<li class="list-group-item" data-toggle="modal" data-target="#issue">
-									<div class="media">
-										<i class="pull-left">&nbsp;&nbsp;</i>
-										<i class="pull-left">&nbsp;&nbsp;</i>
-										<i class="pull-left">&nbsp;&nbsp;</i>
-										<i class="fa fa-code-fork pull-left"></i>
-										<span class="number pull-right"># 13697</span>
-										<div class="media-body">
-											<div class="label label-primary">ㄴREPLY</div><br>
-											<div class="btitle">Document that Helvetica Neue can cause problems on Windows</div>
-											<p class="info">
-												Written by jwilliams
-												<strong> /</strong>
-												<i class="fa fa-fw fa-clock-o"></i>16-05-07 11:11
-												<strong> /</strong>
-												<i class="fa fa-comments"></i> 2 comments
-											</p>
-										</div>
-									</div>
-								</li>
-								<li class="list-group-item" data-toggle="modal" data-target="#issue">
-									<div class="media">
-										<i class="pull-left">&nbsp;&nbsp;</i>
-										<i class="pull-left">&nbsp;&nbsp;</i>
-										<i class="pull-left">&nbsp;&nbsp;</i>
-										<i class="pull-left">&nbsp;&nbsp;</i>
-										<i class="fa fa-code-fork pull-left"></i>
-										<span class="number pull-right"># 13697</span>
-										<div class="media-body">
-											<div class="label label-primary">ㄴREPLY</div><br>
-											<div class="btitle">Document that Helvetica Neue can cause problems on Windows</div>
-											<p class="info">
-												Written by jwilliams
-												<strong> /</strong>
-												<i class="fa fa-fw fa-clock-o"></i>16-05-07 11:11
-												<strong> /</strong>
-												<i class="fa fa-comments"></i> 2 comments
-											</p>
-										</div>
-									</div>
-								</li>
-								<li class="list-group-item" data-toggle="modal" data-target="#issue">
-									<div class="media">
-										<i class="fa fa-file-o pull-left"></i><span class="number pull-right"># 13698</span>
-										<div class="media-body">
-											<div class="btitle">Add drag and drop config import closes</div>
-											<p class="info">
-												Written by jwilliams
-												<strong> /</strong>
-												<i class="fa fa-fw fa-clock-o"></i>16-05-07 11:11
-												<strong> /</strong>
-												<i class="fa fa-comments"></i> 2 comments
-											</p>
-										</div>
-									</div>
-								</li>
-								<li class="list-group-item" data-toggle="modal" data-target="#issue">
-									<div class="media">
-										<i class="fa fa-file-o pull-left"></i><span class="number pull-right"># 13698</span>
-										<div class="media-body">
-											<div class="btitle">Add drag and drop config import closes</div>
-											<p class="info">
-												Written by jwilliams
-												<strong> /</strong>
-												<i class="fa fa-fw fa-clock-o"></i>16-05-07 11:11
-												<strong> /</strong>
-												<i class="fa fa-comments"></i> 2 comments
-											</p>
-										</div>
-									</div>
-								</li>
-								<li class="list-group-item" data-toggle="modal" data-target="#issue">
-									<div class="media">
-										<!-- 
-											게시판 계층의 depth가 7이상은 댓글 달수 없게 하자
-											왜냐면 반응형웹이기 때문에 ui가 깨짐.
-										 -->
-										<i class="pull-left">&nbsp;&nbsp;</i>
-										<i class="pull-left">&nbsp;&nbsp;</i>
-										<i class="pull-left">&nbsp;&nbsp;</i>
-										<i class="pull-left">&nbsp;&nbsp;</i>
-										<i class="pull-left">&nbsp;&nbsp;</i>
-										<i class="pull-left">&nbsp;&nbsp;</i>
-										<i class="pull-left">&nbsp;&nbsp;</i>
-										<i class="fa fa-code-fork pull-left"></i>
-										<span class="number pull-right"># 13697</span>
-										<div class="media-body">
-											<div class="label label-primary">ㄴREPLY</div><br>
-											<div class="btitle">Documentsdfsasdasddf that Helvetica Neue can cause problems on Windows</div>
-											<p class="info">
-												Written by jwilliams
-												<strong> /</strong>
-												<i class="fa fa-fw fa-clock-o"></i>16-05-07 11:11
-												<strong> /</strong>
-												<i class="fa fa-comments"></i> 2 comments
-											</p>
-										</div>
-									</div>
-								</li>
-							</ul><hr>
-						</div>
+							<ul id="boardList" class="list-group fa-padding" style="word-break: break-all;"></ul>
+						<hr></div>
 						
 						<div class="col-md-12">
 							<div class="btn-group btn-group-sm dropup pull-left">
@@ -219,17 +65,7 @@ ${loginMember}
 								</ul>
 							</div>
 							<span id="rowsPerPage" style="margin-left: 10px; color: #337ab7; font-size:22px; font-weight: bold;">20 rows</span>
-							<ul class="pagination pagination-sm pull-right" style="margin: 0 0; font-weight: bold;">
-								<li><a href="#"><i class="fa fa-fw fa-angle-double-left"></i></a></li>
-								<li><a href="#"><i class="fa fa-fw fa-angle-left"></i></a></li>
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#"><i class="fa fa-fw fa-angle-right"></i></a></li>
-								<li><a href="#"><i class="fa fa-fw fa-angle-double-right"></i></a></li>
-							</ul>
+							<ul class="pagination pagination-sm pull-right" style="margin: 0 0; font-weight: bold;"></ul>
 						</div>
 					</div><br><br><br>
 				</div>
@@ -258,6 +94,7 @@ ${loginMember}
 <script src="/js/board/list.js"></script>
 <script src="/js/member/modal/update.js"></script>
 <script src="/js/board/modal/regist.js"></script>
+<script src="/js/board/modal/detail.js"></script>
 
 </body>
 </html>

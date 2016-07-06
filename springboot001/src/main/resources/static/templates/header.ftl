@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="/board/list">HOME</a>
+                    <a href="/board">HOME</a>
                 </li>
                 <li>
                     <a href="https://github.com/Cho-Young-Il/springboot/tree/master/springboot001" target="_blank">GITHUB</a>

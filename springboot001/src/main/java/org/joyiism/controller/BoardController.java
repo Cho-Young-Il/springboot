@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,11 +32,19 @@ public class BoardController {
 	@ResponseBody
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public Map<String, Object> list(PageMaker pageMaker) {
+		logger.info("execute board list controller");
 		
-		return null;
+		Map<String, Object> jsonData = null;
+		try {
+			jsonData = boardService.list(pageMaker);
+		} catch (Exception e) {
+			logger.error("error board list", e);
+		}
+		
+		return jsonData;
 	}
 	
-	@ResponseBody @Transactional
+	@ResponseBody
 	@RequestMapping(value="/regist", method=RequestMethod.POST)
 	public String add(MultipartHttpServletRequest mRequest) {
 		logger.info("execute board regist controller");
@@ -50,5 +57,11 @@ public class BoardController {
 			errMsg = e.getMessage();
 		}
 		return errMsg;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/detail", method=RequestMethod.GET)
+	public void detail(int bno) {
+		logger.info("execute board detail controller");
 	}
 }
