@@ -27,7 +27,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 @Service @Transactional
 public class BoardServiceImpl implements BoardService{
 	@Autowired private BoardDao boardDao;
-	@Autowired private BoardDaoCustom BoardRepository;
+	@Autowired private BoardDaoCustom boardDaoCustom;
 	@Autowired private MemberDao memberDao;
 	@Autowired private AttachfileDao attachfileDao;
 	private final Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
@@ -58,7 +58,7 @@ public class BoardServiceImpl implements BoardService{
 		pageMaker.setEndPage(endPage);
 		
 		jsonData.put("pageMaker", pageMaker);
-		jsonData.put("boardList", BoardRepository.boardList(start, pageMaker));
+		jsonData.put("boardList", boardDaoCustom.boardList(start, pageMaker));
 		
 		return jsonData;
 	}
@@ -103,5 +103,12 @@ public class BoardServiceImpl implements BoardService{
 			attachfileDao.save(new Attachfile(
 				foriName, frealName, fsavedDir, fthumbDir, board));
 		}
+	}
+	
+	@Override
+	public Map<String, Object> detail(int bno) throws Exception {
+		Map<String, Object> jsonData = new HashMap<>();
+		jsonData.put("boardDetail", boardDaoCustom.boardDetail(bno));
+		return jsonData;
 	}
 }

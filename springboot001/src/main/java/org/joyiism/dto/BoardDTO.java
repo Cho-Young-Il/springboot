@@ -4,9 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.joyiism.domain.Attachfile;
 import org.joyiism.domain.Board;
-import org.joyiism.domain.Comment;
 
 public class BoardDTO {
 	private int bno;
@@ -18,8 +16,8 @@ public class BoardDTO {
 	private String bwriter;
 	private String bregDate;
 	private String bmodDate;
-	private List<Comment> comments = new ArrayList<>();
-	private List<Attachfile> files = new ArrayList<>();
+	private List<CommentDTO> comments = new ArrayList<>();
+	private List<AttachfileDTO> files = new ArrayList<>();
 	
 	public BoardDTO() {}
 	public BoardDTO(Board board) {
@@ -33,10 +31,6 @@ public class BoardDTO {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH:mm");
 		this.bregDate = dateFormat.format(board.getBregDate());
 		this.bmodDate = dateFormat.format(board.getBmodDate());
-		
-		this.bwriter = board.getMember().getMname();
-		
-		this.comments = board.getComments();
 	}
 
 	public int getBno() {
@@ -93,16 +87,16 @@ public class BoardDTO {
 	public void setBmodDate(String bmodDate) {
 		this.bmodDate = bmodDate;
 	}
-	public List<Comment> getComments() {
+	public List<CommentDTO> getComments() {
 		return comments;
 	}
-	public void setComments(List<Comment> comments) {
+	public void setComments(List<CommentDTO> comments) {
 		this.comments = comments;
 	}
-	public List<Attachfile> getFiles() {
+	public List<AttachfileDTO> getFiles() {
 		return files;
 	}
-	public void setFiles(List<Attachfile> files) {
+	public void setFiles(List<AttachfileDTO> files) {
 		this.files = files;
 	}
 	

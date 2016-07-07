@@ -61,7 +61,15 @@ public class BoardController {
 	
 	@ResponseBody
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
-	public void detail(int bno) {
+	public Map<String, Object> detail(int bno) {
 		logger.info("execute board detail controller");
+		
+		Map<String, Object> jsonData = null;
+		try {
+			jsonData = boardService.detail(bno);
+		} catch (Exception e) {
+			logger.error("error board regist", e);
+		}
+		return jsonData;
 	}
 }

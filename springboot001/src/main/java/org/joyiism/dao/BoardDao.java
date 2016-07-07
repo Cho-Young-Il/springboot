@@ -6,5 +6,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public interface BoardDao extends JpaRepository<Board, Integer> {
-
+	
 }

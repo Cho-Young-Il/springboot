@@ -6,9 +6,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.joyiism.domain.Attachfile;
 import org.joyiism.domain.Board;
+import org.joyiism.domain.Comment;
 import org.joyiism.domain.PageMaker;
+import org.joyiism.dto.AttachfileDTO;
 import org.joyiism.dto.BoardDTO;
+import org.joyiism.dto.CommentDTO;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -47,8 +51,37 @@ public class BoardDaoCustom{
 		
 		List<BoardDTO> retList = new ArrayList<>();
 		for(Board board : boardList) {
-			retList.add(new BoardDTO(board));
+			BoardDTO boardDTO = new BoardDTO(board);
+			boardDTO.setBwriter(board.getMember().getMname());
+			
+			List<CommentDTO> comments = new ArrayList<>();
+			for(Comment comment : board.getComments()) {
+				comments.add(new CommentDTO(comment));
+			}
+			boardDTO.setComments(comments);
+			retList.add(boardDTO);
 		}
 		return retList;
+	}
+	
+	public BoardDTO boardDetail(int bno) {
+		String jpql = "select b from Board b left join b.member left join b.comments left join b.files where b.bno =:bno";
+		Board board = em.createQuery(jpql, Board.class).setParameter("bno", bno)
+							.getSingleResult();
+		
+		BoardDTO boardDTO = new BoardDTO(board);
+		boardDTO.setBwriter(board.getMember().getMname());
+		
+		List<CommentDTO> comments = new ArrayList<>();
+		List<AttachfileDTO> files = new ArrayList<>();
+		for(Comment comment : board.getComments()) {
+			comments.add(new CommentDTO(comment));
+		}		
+		for(Attachfile attachfile : board.getFiles()) {
+			files.add(new AttachfileDTO(attachfile));
+		}
+		boardDTO.setFiles(files);
+		boardDTO.setComments(comments);
+		return boardDTO;
 	}
 }

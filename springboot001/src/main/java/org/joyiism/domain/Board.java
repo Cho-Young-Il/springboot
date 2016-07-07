@@ -135,8 +135,8 @@ public class Board {
 	
 	@Override
 	public String toString() {
-		return "Board [bno=" + bno + ", bgroup=" + bgroup + ", bgroupSeq=" + bgroupSeq + ", bdepth=" + bdepth
-				+ ", btitle=" + btitle + ", bcontent=" + bcontent + ", bregDate=" + bregDate + ", bmodDate=" + bmodDate
-				+ "member" + member + "]";
+		return "Board [bno=" + bno + ", bgroup=" + bgroup + ", bgroupSeq=" + bgroupSeq + ", bdepth="
+				+ bdepth + ", btitle=" + btitle + ", bcontent=" + bcontent + ", bregDate=" + bregDate + ", bmodDate="
+				+ bmodDate + "]";
 	}
 }
